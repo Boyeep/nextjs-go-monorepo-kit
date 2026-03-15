@@ -1,3 +1,4 @@
+import type { paths } from "@/generated/openapi";
 import { buildApiUrl } from "@/lib/api";
 import type {
   AuthResponse,
@@ -12,9 +13,8 @@ import type {
   VerifyEmailInput,
 } from "@/types/auth";
 
-type MeResponse = {
-  data: AuthUser;
-};
+type MeResponse =
+  paths["/api/v1/auth/me"]["get"]["responses"][200]["content"]["application/json"];
 
 function toSession(response: AuthResponse): AuthSession {
   return {

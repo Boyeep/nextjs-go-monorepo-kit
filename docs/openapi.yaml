@@ -1,0 +1,870 @@
+openapi: 3.1.0
+info:
+  title: Next.js Go Monorepo Kit API
+  version: 0.1.0
+  description: |
+    OpenAPI contract for the starter Go API used by the frontend app.
+servers:
+  - url: http://localhost:8080
+    description: Local development
+tags:
+  - name: Health
+  - name: Collections
+  - name: Auth
+  - name: Analytics
+  - name: Resources
+  - name: Entries
+paths:
+  /health:
+    get:
+      tags: [Health]
+      operationId: getHealth
+      summary: Get API health status
+      responses:
+        "200":
+          description: Health status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /api/v1/collections:
+    get:
+      tags: [Collections]
+      operationId: listCollections
+      summary: List public collections
+      responses:
+        "200":
+          description: Collection list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CollectionListResponse"
+  /api/v1/auth/register:
+    post:
+      tags: [Auth]
+      operationId: register
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterInput"
+      responses:
+        "201":
+          description: User registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegisterResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /api/v1/auth/login:
+    post:
+      tags: [Auth]
+      operationId: login
+      summary: Log in with email and password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginInput"
+      responses:
+        "200":
+          description: Auth session payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /api/v1/auth/forgot-password:
+    post:
+      tags: [Auth]
+      operationId: forgotPassword
+      summary: Request a password reset email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ForgotPasswordInput"
+      responses:
+        "204":
+          description: Password reset accepted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /api/v1/auth/reset-password:
+    post:
+      tags: [Auth]
+      operationId: resetPassword
+      summary: Reset a password with a token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResetPasswordInput"
+      responses:
+        "204":
+          description: Password updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /api/v1/auth/verify-email:
+    post:
+      tags: [Auth]
+      operationId: verifyEmail
+      summary: Verify an email address with a token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifyEmailInput"
+      responses:
+        "204":
+          description: Email verified
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /api/v1/auth/resend-verification:
+    post:
+      tags: [Auth]
+      operationId: resendVerificationEmail
+      summary: Resend email verification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResendVerificationInput"
+      responses:
+        "204":
+          description: Verification email requested
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /api/v1/auth/me:
+    get:
+      tags: [Auth]
+      operationId: getCurrentUser
+      summary: Get the currently authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /api/v1/analytics/overview:
+    get:
+      tags: [Analytics]
+      operationId: getAnalyticsOverview
+      summary: Get owner dashboard analytics overview
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Analytics overview
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnalyticsOverviewResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+        "502":
+          $ref: "#/components/responses/BadGateway"
+  /api/v1/resources:
+    get:
+      tags: [Resources]
+      operationId: listResources
+      summary: List public resources
+      responses:
+        "200":
+          description: Resource list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceListResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    post:
+      tags: [Resources]
+      operationId: createResource
+      summary: Create a resource
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateResourceInput"
+      responses:
+        "201":
+          description: Resource created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /api/v1/resources/{slug}:
+    parameters:
+      - $ref: "#/components/parameters/Slug"
+    get:
+      tags: [Resources]
+      operationId: getResource
+      summary: Get a resource by slug
+      responses:
+        "200":
+          description: Resource detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceResponse"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    patch:
+      tags: [Resources]
+      operationId: updateResource
+      summary: Update a resource
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateResourceInput"
+      responses:
+        "200":
+          description: Resource updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    delete:
+      tags: [Resources]
+      operationId: deleteResource
+      summary: Delete a resource
+      security:
+        - bearerAuth: []
+      responses:
+        "204":
+          description: Resource deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /api/v1/resources/{slug}/entries:
+    parameters:
+      - $ref: "#/components/parameters/Slug"
+    get:
+      tags: [Entries]
+      operationId: listEntriesByResource
+      summary: List public entries for a resource
+      responses:
+        "200":
+          description: Entry list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntryListResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    post:
+      tags: [Entries]
+      operationId: createEntry
+      summary: Create an entry for a resource
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEntryInput"
+      responses:
+        "201":
+          description: Entry created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntryResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /api/v1/entries/{id}:
+    parameters:
+      - $ref: "#/components/parameters/EntryID"
+    patch:
+      tags: [Entries]
+      operationId: updateEntry
+      summary: Update an entry
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateEntryInput"
+      responses:
+        "200":
+          description: Entry updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EntryResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    delete:
+      tags: [Entries]
+      operationId: deleteEntry
+      summary: Delete an entry
+      security:
+        - bearerAuth: []
+      responses:
+        "204":
+          description: Entry deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    Slug:
+      name: slug
+      in: path
+      required: true
+      schema:
+        type: string
+    EntryID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    Unauthorized:
+      description: Authentication failed or is missing
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    Forbidden:
+      description: Authenticated but not allowed
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    Conflict:
+      description: Conflict with existing data
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    NotImplemented:
+      description: Feature not configured
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    BadGateway:
+      description: Upstream integration failed
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+  schemas:
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required: [error]
+      properties:
+        error:
+          type: string
+    HealthStatus:
+      type: object
+      additionalProperties: false
+      required: [name, env, version, database, timestamp]
+      properties:
+        name:
+          type: string
+        env:
+          type: string
+        version:
+          type: string
+        database:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    Collection:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - slug
+        - title
+        - category
+        - description
+        - summary
+        - published
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: string
+        slug:
+          type: string
+        title:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        summary:
+          type: string
+        published:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Resource:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - owner_id
+        - slug
+        - title
+        - description
+        - visibility
+        - status
+        - locale
+        - entry_count
+        - estimated_minutes
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: string
+        owner_id:
+          type: string
+        collection_id:
+          type: string
+        slug:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        visibility:
+          type: string
+          enum: [private, unlisted, public]
+        status:
+          type: string
+          enum: [draft, published, archived]
+        locale:
+          type: string
+        entry_count:
+          type: integer
+        estimated_minutes:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Entry:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - resource_id
+        - position
+        - title
+        - content
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: string
+        resource_id:
+          type: string
+        position:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+        details:
+          type: string
+        notes:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    User:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - username
+        - email
+        - role
+        - status
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        full_name:
+          type: string
+        role:
+          type: string
+        status:
+          type: string
+        last_login_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    AnalyticsOverview:
+      type: object
+      additionalProperties: false
+      required:
+        - visitors
+        - pageviews
+        - views_per_visit
+        - bounce_rate
+        - visit_duration
+        - date_range
+        - source
+      properties:
+        visitors:
+          type: integer
+        pageviews:
+          type: integer
+        views_per_visit:
+          type: string
+        bounce_rate:
+          type: string
+        visit_duration:
+          type: string
+        date_range:
+          type: string
+        source:
+          type: string
+    RegisterInput:
+      type: object
+      additionalProperties: false
+      required: [username, email, password]
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        full_name:
+          type: string
+    LoginInput:
+      type: object
+      additionalProperties: false
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    ForgotPasswordInput:
+      type: object
+      additionalProperties: false
+      required: [email]
+      properties:
+        email:
+          type: string
+          format: email
+    ResetPasswordInput:
+      type: object
+      additionalProperties: false
+      required: [token, password]
+      properties:
+        token:
+          type: string
+        password:
+          type: string
+    VerifyEmailInput:
+      type: object
+      additionalProperties: false
+      required: [token]
+      properties:
+        token:
+          type: string
+    ResendVerificationInput:
+      type: object
+      additionalProperties: false
+      required: [email]
+      properties:
+        email:
+          type: string
+          format: email
+    CreateResourceInput:
+      type: object
+      additionalProperties: false
+      required: [title]
+      properties:
+        collection_id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        visibility:
+          type: string
+          enum: [private, unlisted, public]
+        status:
+          type: string
+          enum: [draft, published, archived]
+        locale:
+          type: string
+        estimated_minutes:
+          type: integer
+    UpdateResourceInput:
+      type: object
+      additionalProperties: false
+      properties:
+        collection_id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        visibility:
+          type: string
+          enum: [private, unlisted, public]
+        status:
+          type: string
+          enum: [draft, published, archived]
+        locale:
+          type: string
+        estimated_minutes:
+          type: integer
+    CreateEntryInput:
+      type: object
+      additionalProperties: false
+      required: [position, title, content]
+      properties:
+        position:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+        details:
+          type: string
+        notes:
+          type: string
+    UpdateEntryInput:
+      type: object
+      additionalProperties: false
+      properties:
+        position:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+        details:
+          type: string
+        notes:
+          type: string
+    UserResponse:
+      type: object
+      additionalProperties: false
+      required: [data]
+      properties:
+        data:
+          $ref: "#/components/schemas/User"
+    CollectionListResponse:
+      type: object
+      additionalProperties: false
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Collection"
+    ResourceResponse:
+      type: object
+      additionalProperties: false
+      required: [data]
+      properties:
+        data:
+          $ref: "#/components/schemas/Resource"
+    ResourceListResponse:
+      type: object
+      additionalProperties: false
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
+    EntryResponse:
+      type: object
+      additionalProperties: false
+      required: [data]
+      properties:
+        data:
+          $ref: "#/components/schemas/Entry"
+    EntryListResponse:
+      type: object
+      additionalProperties: false
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Entry"
+    AnalyticsOverviewResponse:
+      type: object
+      additionalProperties: false
+      required: [data]
+      properties:
+        data:
+          $ref: "#/components/schemas/AnalyticsOverview"
+    AuthResponse:
+      type: object
+      additionalProperties: false
+      required: [access_token, token_type, expires_at, user]
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          default: Bearer
+        expires_at:
+          type: string
+          format: date-time
+        user:
+          $ref: "#/components/schemas/User"
+    RegisterResponse:
+      type: object
+      additionalProperties: false
+      required: [message, user]
+      properties:
+        message:
+          type: string
+        user:
+          $ref: "#/components/schemas/User"

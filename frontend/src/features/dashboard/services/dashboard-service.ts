@@ -1,9 +1,9 @@
+import type { paths } from "@/generated/openapi";
 import { buildApiUrl } from "@/lib/api";
 import type { AnalyticsOverview } from "@/types/analytics";
 
-type AnalyticsOverviewResponse = {
-  data: AnalyticsOverview;
-};
+type AnalyticsOverviewResponse =
+  paths["/api/v1/analytics/overview"]["get"]["responses"][200]["content"]["application/json"];
 
 export async function getAnalyticsOverview(
   accessToken: string,

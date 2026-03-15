@@ -1,3 +1,6 @@
+import type { Collection } from "@/types/collection";
+import type { Entry, Resource } from "@/types/resource";
+
 export const whyChooseUs = [
   {
     icon: "🧩",
@@ -132,19 +135,21 @@ export const sampleCollectionIdeas = [
   },
 ];
 
-export const sampleCollections = sampleCollectionIdeas.map((item, index) => ({
-  id: `collection-${index + 1}`,
-  slug: item.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-  title: item.title,
-  category: item.category,
-  description: item.description,
-  summary: item.description,
-  published: true,
-  created_at: "2026-01-01T00:00:00.000Z",
-  updated_at: "2026-01-01T00:00:00.000Z",
-}));
+export const sampleCollections: Collection[] = sampleCollectionIdeas.map(
+  (item, index) => ({
+    id: `collection-${index + 1}`,
+    slug: item.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+    title: item.title,
+    category: item.category,
+    description: item.description,
+    summary: item.description,
+    published: true,
+    created_at: "2026-01-01T00:00:00.000Z",
+    updated_at: "2026-01-01T00:00:00.000Z",
+  }),
+);
 
-export const sampleResources = [
+export const sampleResources: Resource[] = [
   {
     id: "resource-client-onboarding",
     owner_id: "demo-owner",
@@ -179,18 +184,7 @@ export const sampleResources = [
   },
 ];
 
-export const sampleEntriesByResource: Record<
-  string,
-  Array<{
-    id: string;
-    resource_id: string;
-    position: number;
-    title: string;
-    content: string;
-    created_at: string;
-    updated_at: string;
-  }>
-> = {
+export const sampleEntriesByResource: Record<string, Entry[]> = {
   "client-onboarding-kit": [
     {
       id: "entry-1",

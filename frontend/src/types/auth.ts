@@ -1,26 +1,8 @@
-export type AuthUser = {
-  id: string;
-  username: string;
-  email: string;
-  full_name?: string;
-  role: string;
-  status: string;
-  last_login_at?: string | null;
-  created_at: string;
-  updated_at: string;
-};
+import type { components } from "@/generated/openapi";
 
-export type AuthResponse = {
-  access_token: string;
-  token_type: string;
-  expires_at: string;
-  user: AuthUser;
-};
-
-export type RegisterResponse = {
-  message: string;
-  user: AuthUser;
-};
+export type AuthUser = components["schemas"]["User"];
+export type AuthResponse = components["schemas"]["AuthResponse"];
+export type RegisterResponse = components["schemas"]["RegisterResponse"];
 
 export type AuthSession = {
   accessToken: string;
@@ -28,31 +10,10 @@ export type AuthSession = {
   user: AuthUser;
 };
 
-export type LoginInput = {
-  email: string;
-  password: string;
-};
-
-export type RegisterInput = {
-  username: string;
-  email: string;
-  password: string;
-  full_name?: string;
-};
-
-export type ForgotPasswordInput = {
-  email: string;
-};
-
-export type ResetPasswordInput = {
-  token: string;
-  password: string;
-};
-
-export type VerifyEmailInput = {
-  token: string;
-};
-
-export type ResendVerificationInput = {
-  email: string;
-};
+export type LoginInput = components["schemas"]["LoginInput"];
+export type RegisterInput = components["schemas"]["RegisterInput"];
+export type ForgotPasswordInput = components["schemas"]["ForgotPasswordInput"];
+export type ResetPasswordInput = components["schemas"]["ResetPasswordInput"];
+export type VerifyEmailInput = components["schemas"]["VerifyEmailInput"];
+export type ResendVerificationInput =
+  components["schemas"]["ResendVerificationInput"];

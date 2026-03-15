@@ -301,7 +301,14 @@ async function main() {
   await waitForUrl(`${backendBaseUrl}/health`, "backend health endpoint");
 
   console.log("Building frontend for browser tests...");
-  runSync("npm", ["run", "build"], {
+  runSync("npm", ["exec", "--", "next", "build"], {
+    cwd: frontendDir,
+    env: {
+      ...process.env,
+      ...smokeFrontendEnv,
+    },
+  });
+  runSync("npm", ["exec", "--", "next-sitemap"], {
     cwd: frontendDir,
     env: {
       ...process.env,

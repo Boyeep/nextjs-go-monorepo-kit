@@ -1,10 +1,10 @@
+import type { paths } from "@/generated/openapi";
 import { fetchJson } from "@/lib/api";
 import { sampleCollections } from "@/lib/site-data";
 import type { Collection } from "@/types/collection";
 
-type CollectionListResponse = {
-  data: Collection[];
-};
+type CollectionListResponse =
+  paths["/api/v1/collections"]["get"]["responses"][200]["content"]["application/json"];
 
 export async function getCollections(): Promise<Collection[]> {
   try {

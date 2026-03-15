@@ -1,3 +1,4 @@
+import type { paths } from "@/generated/openapi";
 import { buildApiUrl } from "@/lib/api";
 import { appConfig } from "@/lib/app-config";
 import { sampleEntriesByResource, sampleResources } from "@/lib/site-data";
@@ -8,21 +9,16 @@ import type {
   Resource,
 } from "@/types/resource";
 
-type ResourceResponse = {
-  data: Resource;
-};
-
-type EntryResponse = {
-  data: Entry;
-};
-
-type ResourceListResponse = {
-  data: Resource[];
-};
-
-type EntryListResponse = {
-  data: Entry[];
-};
+type ResourceResponse =
+  paths["/api/v1/resources/{slug}"]["get"]["responses"][200]["content"]["application/json"];
+type CreateResourceResponse =
+  paths["/api/v1/resources"]["post"]["responses"][201]["content"]["application/json"];
+type EntryResponse =
+  paths["/api/v1/resources/{slug}/entries"]["post"]["responses"][201]["content"]["application/json"];
+type ResourceListResponse =
+  paths["/api/v1/resources"]["get"]["responses"][200]["content"]["application/json"];
+type EntryListResponse =
+  paths["/api/v1/resources/{slug}/entries"]["get"]["responses"][200]["content"]["application/json"];
 
 async function parseResponse<T>(response: Response): Promise<T> {
   const payload = (await response.json()) as T | { error?: string };
@@ -67,7 +63,7 @@ export async function createResource(
     body: JSON.stringify(input),
   });
 
-  const payload = await parseResponse<ResourceResponse>(response);
+  const payload = await parseResponse<CreateResourceResponse>(response);
   return payload.data;
 }
 
