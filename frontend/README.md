@@ -47,6 +47,7 @@ npm run build
 npm run start
 npm run lint
 npm run test
+npm run e2e:test
 npm run format
 npm run typecheck
 ```
@@ -71,6 +72,7 @@ The template now includes:
 - demo credentials surfaced on the login screen for local development
 - in-memory auth session storage so access tokens are not persisted across browser refreshes
 - Vitest coverage for frontend utility and component behavior
+- Playwright smoke coverage for live browser flows against the full stack
 
 ## Quality Tooling
 
@@ -79,6 +81,7 @@ The template now includes:
 - Commitlint for conventional commits
 - strict ESLint, Prettier, and TypeScript checks
 - Vitest with React Testing Library for frontend verification
+- Playwright for browser-level smoke tests
 - GitHub Actions CI for lint, format, typecheck, test, and build
 
 ## Sitemap

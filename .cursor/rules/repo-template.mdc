@@ -1,0 +1,20 @@
+---
+description: Guidance for AI edits in this Next.js + Go starter template
+alwaysApply: true
+---
+
+- Use `AGENTS.md` at the repo root as the primary project guide.
+- Treat this repository as a reusable template, not a single-purpose product.
+- Keep naming generic unless the task explicitly replaces the sample domain.
+- Prefer editing within existing structures:
+  - `frontend/src/features/` for frontend domain behavior
+  - `frontend/src/components/` for shared UI and chrome
+  - `backend/internal/server/` for routing
+  - `backend/internal/handler/`, `service/`, and `repository/` for backend changes
+- Root verification commands:
+  - `npm run check`
+  - `npm run e2e`
+- Frontend auth is intentionally in-memory only. Do not assume page reloads preserve login state.
+- If home-page or public copy changes, update `frontend/e2e/smoke.spec.ts` as needed.
+- Keep docs, scripts, and CI aligned when changing workflows.
+- Be aware that frontend builds run `next-sitemap` and can regenerate files under `frontend/public/`.

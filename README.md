@@ -1,6 +1,7 @@
 # nextjs-go-monorepo-kit
 
 [![Template CI](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/template-ci.yml/badge.svg)](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/template-ci.yml)
+[![E2E](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/e2e.yml/badge.svg)](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/e2e.yml)
 [![Release Please](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/release-please.yml/badge.svg)](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/release-please.yml)
 
 A full-stack starter monorepo built with Next.js, Go, and PostgreSQL.
@@ -53,6 +54,8 @@ Backend: `http://localhost:8080`
 npm run dev
 npm run dev:down
 npm run check
+npm run e2e:install
+npm run e2e
 ```
 
 ## Why This Template Is Strong
@@ -61,6 +64,7 @@ npm run check
 - full-stack by default: frontend, backend, Dockerized PostgreSQL, and shared root scripts
 - safer defaults: in-memory auth tokens and stricter password-reset handling
 - stronger quality gates: strict ESLint, Prettier, Vitest utility and component tests, production build checks, Go test, and Go build
+- end-to-end confidence: Playwright smoke tests that boot the full local stack
 - public-template ready: issue forms, PR template, release automation, contribution guide, security policy, and code of conduct
 
 ## What You Get
@@ -70,15 +74,28 @@ npm run check
 - resource and entry CRUD patterns for product-specific modules
 - protected dashboard and analytics-ready frontend patterns
 - Dockerized local database setup
-- lint, format check, utility and component tests, production build, Go test, and Go build checks
+- lint, format check, utility tests, component tests, Playwright smoke tests, production build, Go test, and Go build checks
 - GitHub Actions, Husky, lint-staged, and commitlint support
 - release automation workflow for tagged template releases
 
 ## Notes
 
 - `npm run check` runs frontend lint, typecheck, build, plus backend tests and build.
+- Run `npm run e2e:install` once on a new machine to install the Playwright browser.
+- `npm run e2e` starts PostgreSQL, the Go API, and the Next.js app before running Playwright smoke tests.
 - Sample resource fallbacks are disabled by default. Enable them only when you explicitly want demo content with `NEXT_PUBLIC_ENABLE_SAMPLE_FALLBACK=true`.
 - Frontend auth tokens are stored in memory instead of persistent browser storage.
+
+## AI-Ready Guidance
+
+This template now ships with repository instructions for common AI coding tools:
+
+- `AGENTS.md` as the main repo guide
+- `CLAUDE.md` for Claude-style tooling
+- `.github/copilot-instructions.md` for GitHub Copilot
+- `.cursor/rules/repo-template.mdc` for Cursor
+
+These files document the repo structure, verification commands, architecture conventions, and template-specific gotchas so AI agents can make safer changes with less setup.
 
 ## Subproject Docs
 
@@ -91,4 +108,5 @@ npm run check
 - [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
 - [LICENSE](./LICENSE)
 - [SECURITY.md](./SECURITY.md)
+- [docs/tooling.md](./docs/tooling.md)
 - [docs/expansions.md](./docs/expansions.md)
