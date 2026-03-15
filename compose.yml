@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: boyeep-template-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: app_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: db_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - boyeep-template-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d app_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  boyeep-template-postgres-data:

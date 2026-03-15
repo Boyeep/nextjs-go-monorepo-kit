@@ -1,0 +1,10 @@
+{
+  "name": "boyeep-template",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:down": "docker compose down",
+    "check": "node scripts/check.mjs"
+  }
+}
