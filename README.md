@@ -1,8 +1,13 @@
 # nextjs-go-monorepo-kit
 
+[![Template CI](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/template-ci.yml/badge.svg)](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/template-ci.yml)
+[![Release Please](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/release-please.yml/badge.svg)](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/release-please.yml)
+
 A full-stack starter monorepo built with Next.js, Go, and PostgreSQL.
 
 It includes a modern frontend app, a layered Go API, authentication flows, dashboard patterns, resource and entry management, local Dockerized development, and CI-ready quality checks.
+
+Built to keep the developer-experience strengths of polished frontend starters while also giving you a production-minded Go backend, shared monorepo workflow, and safer default auth behavior out of the box.
 
 ## Stack
 
@@ -50,6 +55,14 @@ npm run dev:down
 npm run check
 ```
 
+## Why This Template Is Strong
+
+- modern stack: Next.js 16, React 19, Tailwind CSS 4, TypeScript 5.9, and Go
+- full-stack by default: frontend, backend, Dockerized PostgreSQL, and shared root scripts
+- safer defaults: in-memory auth tokens and stricter password-reset handling
+- stronger quality gates: strict ESLint, Prettier, Vitest utility and component tests, production build checks, Go test, and Go build
+- public-template ready: issue forms, PR template, release automation, contribution guide, security policy, and code of conduct
+
 ## What You Get
 
 - reusable Next.js + Go monorepo structure
@@ -57,7 +70,7 @@ npm run check
 - resource and entry CRUD patterns for product-specific modules
 - protected dashboard and analytics-ready frontend patterns
 - Dockerized local database setup
-- lint, format check, unit tests, production build, Go test, and Go build checks
+- lint, format check, utility and component tests, production build, Go test, and Go build checks
 - GitHub Actions, Husky, lint-staged, and commitlint support
 - release automation workflow for tagged template releases
 
@@ -75,5 +88,7 @@ npm run check
 ## Repository Standards
 
 - [CONTRIBUTING.md](./CONTRIBUTING.md)
+- [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
 - [LICENSE](./LICENSE)
+- [SECURITY.md](./SECURITY.md)
 - [docs/expansions.md](./docs/expansions.md)

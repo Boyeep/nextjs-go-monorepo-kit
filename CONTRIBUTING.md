@@ -44,6 +44,11 @@ Good contributions for this template include:
 
 Please avoid adding product-specific business logic that makes the starter less reusable.
 
+## Community Standards
+
+- Follow the expectations in [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
+- Report vulnerabilities through the process in [SECURITY.md](./SECURITY.md), not public issues.
+
 ## Releases
 
 This repository includes a `release-please` workflow for automated release PRs and tags on `main`.
