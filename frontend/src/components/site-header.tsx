@@ -42,18 +42,22 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-30 py-4">
-      <div className="mx-auto flex w-[min(var(--max-width),calc(100%-2rem))] items-center justify-between gap-4 rounded-full border border-white/60 bg-[#fffaf2c7] px-4 py-3 shadow-[0_14px_32px_rgba(31,41,55,0.08)] backdrop-blur-[18px] max-[900px]:w-[min(var(--max-width),calc(100%-1.25rem))]">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-3 font-[family-name:var(--font-display)] text-[1.35rem] font-bold tracking-[-0.03em]"
-        >
-          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--accent)] text-sm font-semibold tracking-[0.18em] text-white uppercase shadow-[0_8px_20px_rgba(31,41,55,0.1)]">
+      <div className="mx-auto flex w-[min(var(--max-width),calc(100%-2rem))] items-center justify-between gap-4 rounded-[28px] border border-white/85 bg-[linear-gradient(180deg,rgba(255,255,255,0.84),rgba(255,245,238,0.78))] px-4 py-3 shadow-[0_18px_44px_rgba(31,41,55,0.08)] backdrop-blur-[20px] max-[900px]:w-[min(var(--max-width),calc(100%-1.25rem))]">
+        <Link href="/" className="inline-flex min-w-0 items-center gap-3">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[18px] bg-[linear-gradient(135deg,rgba(239,125,87,0.95),rgba(255,185,103,0.9))] text-sm font-semibold tracking-[0.18em] text-white uppercase shadow-[0_10px_24px_rgba(239,125,87,0.24)]">
             {brandInitials}
           </span>
-          <span>{appConfig.name}</span>
+          <span className="grid min-w-0 gap-0.5">
+            <span className="text-[0.68rem] font-bold tracking-[0.22em] text-[var(--brand-deep)] uppercase">
+              Starter Sandbox
+            </span>
+            <span className="truncate font-[family-name:var(--font-display)] text-[1.1rem] font-bold tracking-[-0.04em] text-[var(--text)]">
+              {appConfig.name}
+            </span>
+          </span>
         </Link>
         <nav
-          className="flex items-center gap-1 max-[900px]:hidden"
+          className="flex items-center gap-1 rounded-full border border-white/80 bg-white/70 p-1 shadow-[0_10px_24px_rgba(31,41,55,0.05)] max-[900px]:hidden"
           aria-label="Primary"
         >
           {navItems.map((item) => (
@@ -62,7 +66,7 @@ export function SiteHeader() {
               href={item.href}
               aria-current={pathname === item.href ? "page" : undefined}
               className={cn(
-                "rounded-full px-4 py-3 text-[var(--muted-text)] transition-colors hover:bg-[rgba(31,111,120,0.1)] hover:text-[var(--text)]",
+                "rounded-full px-3.5 py-2.5 text-sm font-medium text-[var(--muted-text)] transition-colors hover:bg-[rgba(31,111,120,0.1)] hover:text-[var(--text)]",
                 pathname === item.href &&
                   "bg-[rgba(31,111,120,0.1)] text-[var(--text)]",
               )}
@@ -75,7 +79,7 @@ export function SiteHeader() {
               href="/dashboard"
               aria-current={pathname === "/dashboard" ? "page" : undefined}
               className={cn(
-                "rounded-full px-4 py-3 text-[var(--muted-text)] transition-colors hover:bg-[rgba(31,111,120,0.1)] hover:text-[var(--text)]",
+                "rounded-full px-3.5 py-2.5 text-sm font-medium text-[var(--muted-text)] transition-colors hover:bg-[rgba(31,111,120,0.1)] hover:text-[var(--text)]",
                 pathname === "/dashboard" &&
                   "bg-[rgba(31,111,120,0.1)] text-[var(--text)]",
               )}
@@ -87,7 +91,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2 max-[900px]:hidden">
           {user ? (
             <>
-              <span className="rounded-full bg-white/70 px-4 py-2 text-sm text-[var(--muted-text)]">
+              <span className="rounded-full border border-white/80 bg-white/78 px-4 py-2 text-sm text-[var(--muted-text)] shadow-sm">
                 {user.full_name || user.username}
               </span>
               <Button type="button" variant="secondary" onClick={handleLogout}>
@@ -96,7 +100,7 @@ export function SiteHeader() {
               </Button>
             </>
           ) : isLoading ? (
-            <span className="rounded-full bg-white/70 px-4 py-2 text-sm text-[var(--muted-text)]">
+            <span className="rounded-full border border-white/80 bg-white/78 px-4 py-2 text-sm text-[var(--muted-text)] shadow-sm">
               Loading...
             </span>
           ) : (
@@ -115,7 +119,7 @@ export function SiteHeader() {
             <Button
               size="icon"
               variant="secondary"
-              className="hidden max-[900px]:inline-flex"
+              className="hidden border-white/80 bg-white/78 shadow-sm max-[900px]:inline-flex"
               aria-label="Toggle navigation"
             >
               <Menu className="h-5 w-5" />
@@ -124,7 +128,7 @@ export function SiteHeader() {
           <SheetContent>
             <div className="grid gap-3 pt-8">
               <div>
-                <Badge variant="outline">Navigation</Badge>
+                <Badge variant="outline">Quick Navigation</Badge>
                 <h2 className="mt-4 font-[family-name:var(--font-display)] text-3xl">
                   Explore {appConfig.name}
                 </h2>
@@ -134,7 +138,7 @@ export function SiteHeader() {
                   <SheetClose asChild key={item.href}>
                     <Link
                       href={item.href}
-                      className="rounded-[18px] bg-white px-4 py-4"
+                      className="rounded-[20px] border border-[rgba(31,41,55,0.08)] bg-white/84 px-4 py-4 shadow-sm"
                     >
                       {item.label}
                     </Link>
@@ -144,7 +148,7 @@ export function SiteHeader() {
                   <SheetClose asChild>
                     <Link
                       href="/dashboard"
-                      className="rounded-[18px] bg-white px-4 py-4"
+                      className="rounded-[20px] border border-[rgba(31,41,55,0.08)] bg-white/84 px-4 py-4 shadow-sm"
                     >
                       Dashboard
                     </Link>
@@ -154,7 +158,7 @@ export function SiteHeader() {
               <div className="grid gap-3 pt-2">
                 {user ? (
                   <>
-                    <div className="rounded-[18px] bg-white px-4 py-4 text-sm text-[var(--muted-text)]">
+                    <div className="rounded-[20px] border border-[rgba(31,41,55,0.08)] bg-white/84 px-4 py-4 text-sm text-[var(--muted-text)] shadow-sm">
                       Signed in as {user.full_name || user.username}
                     </div>
                     <SheetClose asChild>
