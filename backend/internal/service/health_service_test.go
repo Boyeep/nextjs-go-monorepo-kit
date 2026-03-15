@@ -21,7 +21,7 @@ func TestHealthStatusUsesConfiguredNameAndHealthyDatabase(t *testing.T) {
 	service := NewHealthService(
 		config.Config{
 			App: config.AppConfig{
-				Name:    "Boyeep Template API",
+				Name:    "Next.js Go Monorepo Kit API",
 				Env:     "test",
 				Version: "1.0.0",
 			},
@@ -31,7 +31,7 @@ func TestHealthStatusUsesConfiguredNameAndHealthyDatabase(t *testing.T) {
 
 	status := service.Status()
 
-	if status.Name != "Boyeep Template API" {
+	if status.Name != "Next.js Go Monorepo Kit API" {
 		t.Fatalf("expected app name in health status, got %q", status.Name)
 	}
 
@@ -46,7 +46,7 @@ func TestHealthStatusUsesConfiguredNameAndHealthyDatabase(t *testing.T) {
 
 func TestHealthStatusMarksDatabaseUnavailable(t *testing.T) {
 	service := NewHealthService(
-		config.Config{App: config.AppConfig{Name: "Boyeep Template API"}},
+		config.Config{App: config.AppConfig{Name: "Next.js Go Monorepo Kit API"}},
 		stubPinger{err: errors.New("db down")},
 	)
 

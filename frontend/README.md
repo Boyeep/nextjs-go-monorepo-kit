@@ -52,10 +52,10 @@ npm run typecheck
 ## Environment Variables
 
 ```bash
-NEXT_PUBLIC_APP_NAME=Boyeep Template
+NEXT_PUBLIC_APP_NAME=Next.js Go Monorepo Kit
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_API_BASE_URL=http://localhost:8080/api/v1
-NEXT_PUBLIC_DASHBOARD_OWNER_EMAIL=demo@boyeep.local
+NEXT_PUBLIC_DASHBOARD_OWNER_EMAIL=demo@nextjs-go-kit.local
 NEXT_PUBLIC_ENABLE_SAMPLE_FALLBACK=false
 ```
 

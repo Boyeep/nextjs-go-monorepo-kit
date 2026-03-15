@@ -1,4 +1,4 @@
-APP_NAME=boyeep-template-api
+APP_NAME=nextjs-go-monorepo-kit-api
 
 .PHONY: run build fmt tidy
 

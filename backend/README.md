@@ -59,7 +59,7 @@ Entry create, update, and delete routes require the same Bearer token.
 Most hosts will only need these:
 
 ```text
-APP_NAME=Boyeep Template API
+APP_NAME=Next.js Go Monorepo Kit API
 APP_ENV=production
 PORT=8080
 APP_BASE_URL=https://your-api-host.com
@@ -75,7 +75,7 @@ Notes:
 - `PORT` is supported automatically for Railway/Render/Fly-style platforms.
 - `CORS_ALLOWED_ORIGINS` should include your frontend app URL.
 - the server now starts with graceful shutdown, request IDs, and basic security headers by default.
-- demo seeding can provision a ready-to-use Boyeep account and starter content for local development.
+- demo seeding can provision a ready-to-use starter account and sample content for local development.
 
 ## Database
 

@@ -41,7 +41,7 @@ if (compose.status !== 0) {
   process.exit(compose.status ?? 1);
 }
 
-console.log("Starting Boyeep frontend and backend...");
+console.log("Starting Next.js Go Monorepo Kit frontend and backend...");
 const frontend = run("npm", ["run", "dev"], { cwd: path.join(root, "frontend") });
 const backend = run("go", ["run", "./cmd/api"], { cwd: path.join(root, "backend") });
 

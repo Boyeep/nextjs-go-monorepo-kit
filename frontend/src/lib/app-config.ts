@@ -1,4 +1,4 @@
-const DEFAULT_APP_NAME = "Boyeep Template";
+const DEFAULT_APP_NAME = "Next.js Go Monorepo Kit";
 const DEFAULT_APP_URL = "http://localhost:3000";
 
 function normalizeUrl(value: string) {

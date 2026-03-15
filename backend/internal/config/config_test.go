@@ -21,11 +21,11 @@ func TestGetEnvAsSliceTrimsValues(t *testing.T) {
 }
 
 func TestLoadUsesConfiguredAppName(t *testing.T) {
-	t.Setenv("APP_NAME", "Boyeep Template API")
+	t.Setenv("APP_NAME", "Next.js Go Monorepo Kit API")
 
 	cfg := Load()
 
-	if cfg.App.Name != "Boyeep Template API" {
+	if cfg.App.Name != "Next.js Go Monorepo Kit API" {
 		t.Fatalf("expected app name to be loaded, got %q", cfg.App.Name)
 	}
 }

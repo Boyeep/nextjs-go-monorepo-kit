@@ -49,7 +49,7 @@ func SeedDemoData(ctx context.Context, db *pgxpool.Pool, cfg config.Config) erro
 	var collectionID string
 	err = tx.QueryRow(ctx, `
 		INSERT INTO collections (slug, title, category, description, summary, is_published)
-		VALUES ('demo-operations', 'Demo Operations', 'Ops', 'Seeded collection for local Boyeep demos.', 'A ready-to-browse collection created automatically for local development.', true)
+		VALUES ('demo-operations', 'Demo Operations', 'Ops', 'Seeded collection for local template demos.', 'A ready-to-browse collection created automatically for local development.', true)
 		ON CONFLICT (slug)
 		DO UPDATE SET
 			title = EXCLUDED.title,
@@ -67,7 +67,7 @@ func SeedDemoData(ctx context.Context, db *pgxpool.Pool, cfg config.Config) erro
 	var resourceID string
 	err = tx.QueryRow(ctx, `
 		INSERT INTO resources (owner_id, collection_id, slug, title, description, visibility, status, locale, estimated_minutes, entry_count)
-		VALUES ($1, $2, 'demo-resource', 'Demo Resource', 'A seeded resource so the Boyeep template has meaningful content on first boot.', 'public', 'published', 'en', 6, 3)
+		VALUES ($1, $2, 'demo-resource', 'Demo Resource', 'A seeded resource so the template has meaningful content on first boot.', 'public', 'published', 'en', 6, 3)
 		ON CONFLICT (slug)
 		DO UPDATE SET
 			owner_id = EXCLUDED.owner_id,

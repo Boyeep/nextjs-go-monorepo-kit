@@ -77,7 +77,7 @@ type DemoConfig struct {
 func Load() Config {
 	return Config{
 		App: AppConfig{
-			Name:        getEnv("APP_NAME", "Boyeep Template API"),
+			Name:        getEnv("APP_NAME", "Next.js Go Monorepo Kit API"),
 			Env:         getEnv("APP_ENV", "development"),
 			Host:        getEnv("APP_HOST", "0.0.0.0"),
 			Port:        getPort(),
@@ -124,10 +124,10 @@ func Load() Config {
 		},
 		Demo: DemoConfig{
 			SeedEnabled: getEnvAsBool("DEMO_SEED_ENABLED", false),
-			Email:       strings.ToLower(strings.TrimSpace(getEnv("DEMO_USER_EMAIL", "demo@boyeep.local"))),
+			Email:       strings.ToLower(strings.TrimSpace(getEnv("DEMO_USER_EMAIL", "demo@nextjs-go-kit.local"))),
 			Password:    getEnv("DEMO_USER_PASSWORD", "demo12345"),
-			Username:    strings.TrimSpace(getEnv("DEMO_USER_USERNAME", "boyeep-demo")),
-			FullName:    strings.TrimSpace(getEnv("DEMO_USER_FULL_NAME", "Boyeep Demo")),
+			Username:    strings.TrimSpace(getEnv("DEMO_USER_USERNAME", "nextjs-go-demo")),
+			FullName:    strings.TrimSpace(getEnv("DEMO_USER_FULL_NAME", "Next.js Go Demo")),
 		},
 	}
 }

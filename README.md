@@ -39,7 +39,7 @@ Backend: `http://localhost:8080`
 
 ## Demo Account
 
-- email: `demo@boyeep.local`
+- email: `demo@nextjs-go-kit.local`
 - password: `demo12345`
 
 ## Commands
