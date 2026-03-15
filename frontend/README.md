@@ -70,14 +70,16 @@ The template now includes:
 - optional sample data fallbacks, enabled only when `NEXT_PUBLIC_ENABLE_SAMPLE_FALLBACK=true`
 - demo credentials surfaced on the login screen for local development
 - in-memory auth session storage so access tokens are not persisted across browser refreshes
-- Vitest coverage for frontend utility behavior
+- Vitest coverage for frontend utility and component behavior
 
 ## Quality Tooling
 
 - Husky for local git hooks
 - lint-staged for pre-commit checks
 - Commitlint for conventional commits
-- GitHub Actions CI for lint, typecheck, build
+- strict ESLint, Prettier, and TypeScript checks
+- Vitest with React Testing Library for frontend verification
+- GitHub Actions CI for lint, format, typecheck, test, and build
 
 ## Sitemap
 

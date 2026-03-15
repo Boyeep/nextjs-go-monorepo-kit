@@ -3,7 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 const commands = [
-  { cwd: path.join(process.cwd(), "frontend"), command: "npm", args: ["run", "lint"] },
+  { cwd: path.join(process.cwd(), "frontend"), command: "npm", args: ["run", "lint:strict"] },
   { cwd: path.join(process.cwd(), "frontend"), command: "npm", args: ["run", "format:check"] },
   { cwd: path.join(process.cwd(), "frontend"), command: "npm", args: ["run", "typecheck"] },
   { cwd: path.join(process.cwd(), "frontend"), command: "npm", args: ["run", "test"] },
