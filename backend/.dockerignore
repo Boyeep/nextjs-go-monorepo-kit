@@ -1,0 +1,9 @@
+.git
+.github
+.env
+.env.*
+tmp
+bin
+coverage
+README.md
+docs
