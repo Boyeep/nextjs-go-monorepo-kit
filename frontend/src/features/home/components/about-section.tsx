@@ -1,10 +1,10 @@
-import { ArrowRight, Blocks, LayoutDashboard } from "lucide-react";
+import { ArrowRight, LayoutDashboard } from "lucide-react";
 import { featuredTemplates } from "@/lib/site-data";
 
 const landingHighlights = [
   {
     step: "01",
-    title: "Single primary path",
+    title: "Focused first impression",
     description: "Clear hero copy with one dominant action path.",
     Icon: ArrowRight,
     accentClass:
@@ -13,21 +13,13 @@ const landingHighlights = [
   },
   {
     step: "02",
-    title: "Signals the system",
-    description: "Enough supporting cards to hint at the rest of the system.",
-    Icon: Blocks,
-    accentClass:
-      "bg-[linear-gradient(180deg,rgba(239,250,250,0.96),rgba(255,255,255,0.86))]",
-    iconClass: "bg-[rgba(31,111,120,0.1)] text-[var(--accent-brand)]",
-  },
-  {
-    step: "03",
-    title: "Room to expand",
-    description: "A layout that can later grow into a fuller marketing page.",
+    title: "Ready to expand",
+    description:
+      "Supporting sections hint at the system now and can grow into a fuller marketing page later.",
     Icon: LayoutDashboard,
     accentClass:
-      "bg-[linear-gradient(180deg,rgba(255,248,240,0.98),rgba(255,255,255,0.88))]",
-    iconClass: "bg-[rgba(244,162,97,0.16)] text-[var(--brand-deep)]",
+      "bg-[linear-gradient(180deg,rgba(239,250,250,0.96),rgba(255,255,255,0.88))]",
+    iconClass: "bg-[rgba(31,111,120,0.1)] text-[var(--accent-brand)]",
   },
 ];
 
@@ -54,7 +46,7 @@ export function AboutSection() {
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2">
             {landingHighlights.map(
               ({ step, title, description, Icon, accentClass, iconClass }) => (
                 <article
@@ -77,10 +69,10 @@ export function AboutSection() {
                       </span>
                     </div>
                     <div className="grid gap-2">
-                      <h3 className="m-0 font-[family-name:var(--font-display)] text-[1.3rem] leading-[1.02] tracking-[-0.04em] text-[var(--text)]">
+                      <h3 className="m-0 max-w-[12ch] font-[family-name:var(--font-display)] text-[1.45rem] leading-[0.98] tracking-[-0.04em] text-[var(--text)]">
                         {title}
                       </h3>
-                      <p className="m-0 text-sm leading-7 text-[var(--muted-text)]">
+                      <p className="m-0 max-w-[30ch] text-sm leading-7 text-[var(--muted-text)]">
                         {description}
                       </p>
                     </div>
