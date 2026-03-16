@@ -49,7 +49,7 @@ func SeedDemoData(ctx context.Context, db *pgxpool.Pool, cfg config.Config) erro
 	var resourceID string
 	err = tx.QueryRow(ctx, `
 		INSERT INTO resources (owner_id, slug, title, description, visibility, status, locale, estimated_minutes, entry_count)
-		VALUES ($1, 'demo-resource', 'Demo Resource', 'A seeded resource so the template has meaningful content on first boot.', 'public', 'published', 'en', 6, 3)
+		VALUES ($1, 'demo-resource', 'Demo Template', 'A seeded template so the starter has meaningful public content on first boot.', 'public', 'published', 'en', 6, 3)
 		ON CONFLICT (slug)
 		DO UPDATE SET
 			owner_id = EXCLUDED.owner_id,
@@ -72,7 +72,7 @@ func SeedDemoData(ctx context.Context, db *pgxpool.Pool, cfg config.Config) erro
 		title    string
 		content  string
 	}{
-		{1, "Welcome note", "This demo entry shows how a seeded resource can explain your product or workflow."},
+		{1, "Welcome note", "This demo entry shows how a seeded template can explain your product or workflow."},
 		{2, "Editing flow", "Use the dashboard and auth flows to replace demo content with your own product experience."},
 		{3, "Deployment handoff", "This starter is meant to move from local development to production with minimal structural rework."},
 	}

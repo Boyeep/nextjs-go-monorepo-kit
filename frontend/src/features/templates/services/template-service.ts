@@ -1,14 +1,14 @@
 import type { paths } from "@/generated/openapi";
 import { buildApiUrl } from "@/lib/api";
 import { appConfig } from "@/lib/app-config";
-import { sampleEntriesByResource, sampleResources } from "@/lib/site-data";
-import type { Entry, Resource } from "@/types/resource";
+import { sampleSectionsByTemplate, sampleTemplates } from "@/lib/site-data";
+import type { Template, TemplateSection } from "@/types/template";
 
-type ResourceResponse =
+type TemplateResponse =
   paths["/api/v1/resources/{slug}"]["get"]["responses"][200]["content"]["application/json"];
-type ResourceListResponse =
+type TemplateListResponse =
   paths["/api/v1/resources"]["get"]["responses"][200]["content"]["application/json"];
-type EntryListResponse =
+type TemplateSectionListResponse =
   paths["/api/v1/resources/{slug}/entries"]["get"]["responses"][200]["content"]["application/json"];
 
 async function parseResponse<T>(response: Response): Promise<T> {
@@ -28,7 +28,7 @@ function canUseSampleFallback() {
   return appConfig.enableSampleFallback;
 }
 
-export async function getResources(): Promise<Resource[]> {
+export async function getTemplates(): Promise<Template[]> {
   try {
     const response = await fetch(buildApiUrl("/resources"), {
       headers: {
@@ -37,17 +37,17 @@ export async function getResources(): Promise<Resource[]> {
       next: { revalidate: 30 },
     });
 
-    const payload = await parseResponse<ResourceListResponse>(response);
+    const payload = await parseResponse<TemplateListResponse>(response);
     return payload.data;
   } catch {
     if (!canUseSampleFallback()) {
-      throw new Error("Failed to load resources from the API.");
+      throw new Error("Failed to load templates from the API.");
     }
-    return sampleResources;
+    return sampleTemplates;
   }
 }
 
-export async function getResource(slug: string): Promise<Resource> {
+export async function getTemplate(slug: string): Promise<Template> {
   try {
     const response = await fetch(buildApiUrl(`/resources/${slug}`), {
       headers: {
@@ -56,21 +56,23 @@ export async function getResource(slug: string): Promise<Resource> {
       next: { revalidate: 30 },
     });
 
-    const payload = await parseResponse<ResourceResponse>(response);
+    const payload = await parseResponse<TemplateResponse>(response);
     return payload.data;
   } catch {
     if (!canUseSampleFallback()) {
-      throw new Error("Failed to load resource from the API.");
+      throw new Error("Failed to load template from the API.");
     }
-    const fallback = sampleResources.find((resource) => resource.slug === slug);
+    const fallback = sampleTemplates.find((template) => template.slug === slug);
     if (!fallback) {
-      throw new Error("Resource not found");
+      throw new Error("Template not found");
     }
     return fallback;
   }
 }
 
-export async function getEntriesByResource(slug: string): Promise<Entry[]> {
+export async function getSectionsByTemplate(
+  slug: string,
+): Promise<TemplateSection[]> {
   try {
     const response = await fetch(buildApiUrl(`/resources/${slug}/entries`), {
       headers: {
@@ -79,12 +81,12 @@ export async function getEntriesByResource(slug: string): Promise<Entry[]> {
       next: { revalidate: 30 },
     });
 
-    const payload = await parseResponse<EntryListResponse>(response);
+    const payload = await parseResponse<TemplateSectionListResponse>(response);
     return payload.data;
   } catch {
     if (!canUseSampleFallback()) {
-      throw new Error("Failed to load resource entries from the API.");
+      throw new Error("Failed to load template sections from the API.");
     }
-    return sampleEntriesByResource[slug] ?? [];
+    return sampleSectionsByTemplate[slug] ?? [];
   }
 }

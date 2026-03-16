@@ -110,6 +110,9 @@ export function SandboxPage() {
               <Button asChild>
                 <Link href="/dashboard">Open dashboard preview</Link>
               </Button>
+              <Button asChild variant="secondary">
+                <Link href="/templates/demo-resource">Open demo template</Link>
+              </Button>
             </div>
           </div>
 
@@ -153,6 +156,11 @@ export function SandboxPage() {
                   </div>
                 ))}
               </div>
+              <Button asChild variant="secondary" className="w-full sm:w-fit">
+                <Link href="/templates/demo-resource">
+                  Preview a public template page
+                </Link>
+              </Button>
             </CardContent>
           </Card>
         </div>
@@ -340,12 +348,12 @@ export function SandboxPage() {
                           <div className="flex items-center gap-3">
                             <Blocks className="h-5 w-5 text-[var(--brand-deep)]" />
                             <span className="font-semibold text-[var(--text)]">
-                              UI sandbox
+                              Template detail preview
                             </span>
                           </div>
                           <p className="mt-2 mb-0 text-sm leading-7 text-[var(--muted-text)]">
-                            A visual audit route for shared components and
-                            starter patterns.
+                            Public on `/templates/demo-resource` with the same
+                            starter surface used for detail pages.
                           </p>
                         </div>
                       </div>

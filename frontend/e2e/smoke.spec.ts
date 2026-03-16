@@ -29,6 +29,15 @@ test.describe("starter smoke flows", () => {
     ).toBeVisible();
     await expect(page.getByText("Button Styles")).toBeVisible();
 
+    await page.goto("/templates/demo-resource");
+
+    await expect(
+      page.getByRole("heading", {
+        name: "Demo Template",
+      }),
+    ).toBeVisible();
+    await expect(page.getByText("Section 1")).toBeVisible();
+
     await page.goto("/dashboard");
 
     await expect(

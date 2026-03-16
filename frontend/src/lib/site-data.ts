@@ -1,4 +1,4 @@
-import type { Entry, Resource } from "@/types/resource";
+import type { Template, TemplateSection } from "@/types/template";
 
 export const featuredTemplates = [
   {
@@ -18,7 +18,7 @@ export const featuredTemplates = [
   },
   {
     title: "Client Portal",
-    description: "Private resources and account tools",
+    description: "Private templates and account tools",
     category: "Portal",
   },
   {
@@ -28,14 +28,14 @@ export const featuredTemplates = [
   },
 ];
 
-export const sampleResources: Resource[] = [
+export const sampleTemplates: Template[] = [
   {
     id: "resource-client-onboarding",
     owner_id: "demo-owner",
     slug: "client-onboarding-kit",
     title: "Client Onboarding Kit",
     description:
-      "A reusable resource with milestone checklists, welcome copy, and delivery notes.",
+      "A reusable template with milestone checklists, welcome copy, and delivery notes.",
     visibility: "public",
     status: "published",
     locale: "en",
@@ -50,7 +50,7 @@ export const sampleResources: Resource[] = [
     slug: "content-brief-template",
     title: "Content Brief Template",
     description:
-      "A sample publishing resource you can adapt for editorial workflows and approvals.",
+      "A sample publishing template you can adapt for editorial workflows and approvals.",
     visibility: "public",
     status: "published",
     locale: "en",
@@ -61,7 +61,7 @@ export const sampleResources: Resource[] = [
   },
 ];
 
-export const sampleEntriesByResource: Record<string, Entry[]> = {
+export const sampleSectionsByTemplate: Record<string, TemplateSection[]> = {
   "client-onboarding-kit": [
     {
       id: "entry-1",

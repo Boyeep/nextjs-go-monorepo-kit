@@ -1,3 +1,3 @@
-# Resources Feature
+# Legacy Resources Feature
 
-Put resource and entry APIs, hooks, stores, and types here.
+This folder is kept only as a path-level compatibility wrapper while the public frontend surface has moved to `templates/`.
