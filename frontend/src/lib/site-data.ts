@@ -1,32 +1,5 @@
 import type { Entry, Resource } from "@/types/resource";
 
-export const whyChooseUs = [
-  {
-    icon: "🧩",
-    title: "Modular by default",
-    description:
-      "Start with a reusable structure, then swap the starter patterns for your own domain.",
-  },
-  {
-    icon: "🚀",
-    title: "Ready to ship",
-    description:
-      "Includes auth flows, API wiring, and polished UI patterns so you can move faster.",
-  },
-  {
-    icon: "🔌",
-    title: "Easy to adapt",
-    description:
-      "The layout, auth flow, and dashboard shells are meant to be renamed, reshaped, or replaced.",
-  },
-  {
-    icon: "📈",
-    title: "Built-in patterns",
-    description:
-      "Use the existing dashboard, list, detail, and form flows as a starting point.",
-  },
-];
-
 export const featuredTemplates = [
   {
     title: "Starter Catalog",

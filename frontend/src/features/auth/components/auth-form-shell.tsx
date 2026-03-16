@@ -23,6 +23,7 @@ import {
 import { AuthSplitShell } from "@/features/auth/components/auth-split-shell";
 import { useAuthStore } from "@/features/auth/store/auth-store";
 import { appConfig } from "@/lib/app-config";
+import { cn } from "@/lib/utils";
 import type { AuthSession, RegisterResponse } from "@/types/auth";
 
 type Field = {
@@ -133,18 +134,23 @@ export function AuthFormShell({
     mutation.mutate(new FormData(event.currentTarget));
   }
 
+  const footerLinkTone =
+    footerLinkHref === "/signup"
+      ? "bg-[rgba(239,125,87,0.14)] text-[var(--brand-deep)] hover:bg-[rgba(239,125,87,0.2)]"
+      : "bg-[rgba(31,111,120,0.12)] text-[var(--accent-brand)] hover:bg-[rgba(31,111,120,0.18)]";
+
   return (
     <AuthSplitShell
-      badge={`${appConfig.name} Access`}
-      heading="Account flows that are ready to reuse."
-      description="These account pages share a consistent structure, connect cleanly to the backend, and can be adapted to many product types."
+      badge="Starter auth"
+      heading="Reusable account flows, ready to adapt."
+      description="A calmer auth surface with reusable structure, clear states, and backend-ready patterns you can reshape for your own product."
     >
       <Card className="rounded-[32px] border border-white/70 bg-white/85 p-[clamp(1.5rem,4vw,2rem)] shadow-[var(--shadow)]">
-        <CardHeader className="mb-6 grid gap-2 p-0">
+        <CardHeader className="mb-6 grid gap-2 p-0 text-left">
           <CardTitle>{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-0 text-left">
           {mode === "login" &&
           appConfig.demo.email &&
           appConfig.demo.password ? (
@@ -158,7 +164,7 @@ export function AuthFormShell({
               </p>
             </div>
           ) : null}
-          <form className="grid gap-4" onSubmit={handleSubmit}>
+          <form className="grid gap-4 text-left" onSubmit={handleSubmit}>
             {fields.map((field) => (
               <div key={field.id} className="grid gap-2">
                 <Label htmlFor={field.id}>{field.label}</Label>
@@ -195,8 +201,17 @@ export function AuthFormShell({
               ) : null}
             </div>
           </form>
-          <p className="mt-5 text-[var(--muted-text)]">
-            {footerText} <Link href={footerLinkHref}>{footerLinkLabel}</Link>
+          <p className="mt-5 flex flex-wrap items-center gap-2 text-[var(--muted-text)]">
+            <span>{footerText}</span>
+            <Link
+              href={footerLinkHref}
+              className={cn(
+                "inline-flex rounded-full px-3 py-1.5 text-sm font-semibold transition-colors",
+                footerLinkTone,
+              )}
+            >
+              {footerLinkLabel}
+            </Link>
           </p>
         </CardContent>
       </Card>

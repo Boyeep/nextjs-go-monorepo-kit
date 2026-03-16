@@ -14,21 +14,17 @@ test.describe("starter smoke flows", () => {
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("link", { name: "Open public preview" }),
+      page.getByRole("link", { name: "Open dashboard preview" }),
     ).toBeVisible();
 
-    await page.goto("/preview");
+    await page.goto("/dashboard");
 
     await expect(
       page.getByRole("heading", {
-        name: "Explore the starter without creating an account first.",
+        name: "Preview the private workspace before wiring login.",
       }),
     ).toBeVisible();
-    await expect(
-      page.getByRole("heading", {
-        name: "Sample resources that already work without login",
-      }),
-    ).toBeVisible();
+    await expect(page.getByText("Public demo")).toBeVisible();
 
     await page.goto("/collections");
 

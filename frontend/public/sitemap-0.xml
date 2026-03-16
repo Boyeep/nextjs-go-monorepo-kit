@@ -4,6 +4,5 @@
 <url><loc>http://localhost:3000/login</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>http://localhost:3000/signup</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>http://localhost:3000</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>http://localhost:3000/preview</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>http://localhost:3000/dashboard</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

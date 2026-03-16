@@ -16,12 +16,11 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { appConfig, brandInitials } from "@/lib/app-config";
-import { canAccessDashboard } from "@/lib/dashboard-access";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/preview", label: "Preview" },
+  { href: "/dashboard", label: "Dashboard" },
   { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ];
@@ -33,7 +32,6 @@ export function SiteHeader() {
   const setMobileNavOpen = useUiStore((state) => state.setMobileNavOpen);
   const clearSession = useAuthStore((state) => state.clearSession);
   const { user, isLoading } = useAuthSession();
-  const showDashboardLink = canAccessDashboard(user);
 
   function handleLogout() {
     clearSession();
@@ -74,19 +72,6 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          {showDashboardLink ? (
-            <Link
-              href="/dashboard"
-              aria-current={pathname === "/dashboard" ? "page" : undefined}
-              className={cn(
-                "rounded-full px-3.5 py-2.5 text-sm font-medium text-[var(--muted-text)] transition-colors hover:bg-[rgba(31,111,120,0.1)] hover:text-[var(--text)]",
-                pathname === "/dashboard" &&
-                  "bg-[rgba(31,111,120,0.1)] text-[var(--text)]",
-              )}
-            >
-              Dashboard
-            </Link>
-          ) : null}
         </nav>
         <div className="flex items-center gap-2 justify-self-end max-[900px]:hidden">
           {user ? (
@@ -144,16 +129,6 @@ export function SiteHeader() {
                     </Link>
                   </SheetClose>
                 ))}
-                {showDashboardLink ? (
-                  <SheetClose asChild>
-                    <Link
-                      href="/dashboard"
-                      className="rounded-[20px] border border-[rgba(31,41,55,0.08)] bg-white/84 px-4 py-4 shadow-sm"
-                    >
-                      Dashboard
-                    </Link>
-                  </SheetClose>
-                ) : null}
               </nav>
               <div className="grid gap-3 pt-2">
                 {user ? (

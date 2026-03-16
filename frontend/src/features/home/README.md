@@ -1,3 +1,3 @@
 # Home Feature
 
-Put landing-page specific sections, hooks, and future home-facing services here.
+Keep landing-page sections in `components/` and add future home-specific hooks or services here if the feature grows beyond static composition.
