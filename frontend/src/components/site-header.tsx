@@ -41,11 +41,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-30 px-0 pt-4 pb-0">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 -bottom-8 h-16 bg-[linear-gradient(180deg,rgba(255,248,241,0.68),rgba(255,248,241,0))] blur-2xl"
-      />
-      <div className="relative mx-auto flex w-[min(var(--max-width),calc(100%-2rem))] items-center justify-between gap-4 rounded-[28px] border border-white/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.72),rgba(255,245,238,0.68))] px-4 py-3 shadow-[0_14px_36px_rgba(31,41,55,0.05)] backdrop-blur-[24px] max-[900px]:w-[min(var(--max-width),calc(100%-1.25rem))]">
+      <div className="relative mx-auto flex w-[min(var(--max-width),calc(100%-2rem))] items-center justify-between gap-4 rounded-[28px] border border-white/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.72),rgba(255,245,238,0.68))] px-4 py-3 shadow-[0_12px_30px_rgba(31,41,55,0.04)] backdrop-blur-[24px] max-[900px]:w-[min(var(--max-width),calc(100%-1.25rem))]">
         <Link href="/" className="inline-flex min-w-0 items-center gap-3">
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[18px] bg-[linear-gradient(135deg,rgba(239,125,87,0.95),rgba(255,185,103,0.9))] text-sm font-semibold tracking-[0.18em] text-white uppercase shadow-[0_10px_24px_rgba(239,125,87,0.24)]">
             {brandInitials}
