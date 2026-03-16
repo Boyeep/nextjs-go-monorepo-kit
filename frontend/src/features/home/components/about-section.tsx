@@ -1,4 +1,35 @@
+import { ArrowRight, Blocks, LayoutDashboard } from "lucide-react";
 import { featuredTemplates } from "@/lib/site-data";
+
+const landingHighlights = [
+  {
+    step: "01",
+    title: "Single primary path",
+    description: "Clear hero copy with one dominant action path.",
+    Icon: ArrowRight,
+    accentClass:
+      "bg-[linear-gradient(180deg,rgba(255,244,236,0.96),rgba(255,255,255,0.86))]",
+    iconClass: "bg-[rgba(239,125,87,0.12)] text-[var(--brand-deep)]",
+  },
+  {
+    step: "02",
+    title: "Signals the system",
+    description: "Enough supporting cards to hint at the rest of the system.",
+    Icon: Blocks,
+    accentClass:
+      "bg-[linear-gradient(180deg,rgba(239,250,250,0.96),rgba(255,255,255,0.86))]",
+    iconClass: "bg-[rgba(31,111,120,0.1)] text-[var(--accent-brand)]",
+  },
+  {
+    step: "03",
+    title: "Room to expand",
+    description: "A layout that can later grow into a fuller marketing page.",
+    Icon: LayoutDashboard,
+    accentClass:
+      "bg-[linear-gradient(180deg,rgba(255,248,240,0.98),rgba(255,255,255,0.88))]",
+    iconClass: "bg-[rgba(244,162,97,0.16)] text-[var(--brand-deep)]",
+  },
+];
 
 export function AboutSection() {
   const featuredCards = featuredTemplates.slice(0, 3);
@@ -24,30 +55,39 @@ export function AboutSection() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3">
-            <div className="rounded-[24px] bg-white/80 p-4">
-              <strong className="font-[family-name:var(--font-display)] text-2xl">
-                01
-              </strong>
-              <p className="mt-2 mb-0 text-sm leading-7 text-[var(--muted-text)]">
-                Clear hero copy with one dominant action path.
-              </p>
-            </div>
-            <div className="rounded-[24px] bg-white/80 p-4">
-              <strong className="font-[family-name:var(--font-display)] text-2xl">
-                02
-              </strong>
-              <p className="mt-2 mb-0 text-sm leading-7 text-[var(--muted-text)]">
-                Enough supporting cards to hint at the rest of the system.
-              </p>
-            </div>
-            <div className="rounded-[24px] bg-white/80 p-4">
-              <strong className="font-[family-name:var(--font-display)] text-2xl">
-                03
-              </strong>
-              <p className="mt-2 mb-0 text-sm leading-7 text-[var(--muted-text)]">
-                A layout that can later grow into a fuller marketing page.
-              </p>
-            </div>
+            {landingHighlights.map(
+              ({ step, title, description, Icon, accentClass, iconClass }) => (
+                <article
+                  key={step}
+                  className={`group relative overflow-hidden rounded-[28px] border border-white/85 p-5 shadow-[0_18px_40px_rgba(31,41,55,0.08)] transition-transform duration-200 hover:-translate-y-1 ${accentClass}`}
+                >
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -top-8 right-[-0.5rem] h-20 w-20 rounded-full bg-white/45 blur-2xl"
+                  />
+                  <div className="relative grid gap-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="text-[0.75rem] font-bold tracking-[0.18em] text-[var(--muted-text)] uppercase">
+                        {step}
+                      </span>
+                      <span
+                        className={`flex h-10 w-10 items-center justify-center rounded-[16px] ${iconClass}`}
+                      >
+                        <Icon className="h-4.5 w-4.5" />
+                      </span>
+                    </div>
+                    <div className="grid gap-2">
+                      <h3 className="m-0 font-[family-name:var(--font-display)] text-[1.3rem] leading-[1.02] tracking-[-0.04em] text-[var(--text)]">
+                        {title}
+                      </h3>
+                      <p className="m-0 text-sm leading-7 text-[var(--muted-text)]">
+                        {description}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              ),
+            )}
           </div>
         </div>
 

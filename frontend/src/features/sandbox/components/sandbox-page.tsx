@@ -80,7 +80,9 @@ export function SandboxPage() {
         <header className="grid gap-5">
           <div className="flex flex-wrap items-center gap-3">
             <Badge variant="outline">Sandbox</Badge>
-            <Badge>Live Components</Badge>
+            <Badge className="bg-[var(--accent-brand)] text-white shadow-sm hover:bg-[var(--accent-brand)]">
+              Live Components
+            </Badge>
           </div>
           <div className="grid gap-2">
             <h1 className="m-0 font-[family-name:var(--font-display)] text-[clamp(2.8rem,5vw,4.4rem)] leading-[0.95] tracking-[-0.06em] text-[var(--text)]">
@@ -98,7 +100,7 @@ export function SandboxPage() {
               <Link href="/dashboard">Dashboard preview</Link>
             </Button>
             <Button asChild variant="secondary">
-              <Link href="/templates/demo-resource">Demo template</Link>
+              <Link href="/templates/demo-resource">Sample template page</Link>
             </Button>
           </div>
         </header>
