@@ -36,7 +36,7 @@ const featuredCards = featuredTemplates.slice(0, 3);
 
 export function CenteredHomePage() {
   return (
-    <main className="relative overflow-x-hidden px-0 pb-12">
+    <main className="relative -mt-8 overflow-x-hidden px-0 pt-8 pb-12">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 -top-32 h-[calc(100svh+18rem)] bg-[radial-gradient(circle_at_top,rgba(239,125,87,0.24),transparent_36%),radial-gradient(circle_at_18%_20%,rgba(31,111,120,0.14),transparent_26%),radial-gradient(circle_at_82%_14%,rgba(255,206,170,0.24),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.2),transparent_72%)]"
