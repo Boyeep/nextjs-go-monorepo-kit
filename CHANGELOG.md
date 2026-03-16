@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/Boyeep/nextjs-go-monorepo-kit/compare/v1.0.0...v1.0.1) (2026-03-16)
+
+
+### Bug Fixes
+
+* **frontend:** refine homepage first fold ([ea2410b](https://github.com/Boyeep/nextjs-go-monorepo-kit/commit/ea2410bba1b3bdea6e1671ee4bbc2e72f02616e9))
+
 ## 1.0.0 (2026-03-15)
 
 
