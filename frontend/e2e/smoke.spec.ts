@@ -24,10 +24,14 @@ test.describe("starter smoke flows", () => {
 
     await expect(
       page.getByRole("heading", {
-        name: "A vertical sandbox for the starter building blocks.",
+        name: "Component Gallery",
       }),
     ).toBeVisible();
-    await expect(page.getByText("Action styles")).toBeVisible();
+    await expect(
+      page.getByRole("heading", {
+        name: "Buttons",
+      }),
+    ).toBeVisible();
 
     await page.goto("/templates/demo-resource");
 
