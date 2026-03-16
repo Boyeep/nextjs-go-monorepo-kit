@@ -21,23 +21,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/api/v1/collections": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** List public collections */
-    get: operations["listCollections"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   "/api/v1/auth/register": {
     parameters: {
       query?: never;
@@ -184,8 +167,7 @@ export interface paths {
     /** List public resources */
     get: operations["listResources"];
     put?: never;
-    /** Create a resource */
-    post: operations["createResource"];
+    post?: never;
     delete?: never;
     options?: never;
     head?: never;
@@ -205,12 +187,10 @@ export interface paths {
     get: operations["getResource"];
     put?: never;
     post?: never;
-    /** Delete a resource */
-    delete: operations["deleteResource"];
+    delete?: never;
     options?: never;
     head?: never;
-    /** Update a resource */
-    patch: operations["updateResource"];
+    patch?: never;
     trace?: never;
   };
   "/api/v1/resources/{slug}/entries": {
@@ -225,32 +205,11 @@ export interface paths {
     /** List public entries for a resource */
     get: operations["listEntriesByResource"];
     put?: never;
-    /** Create an entry for a resource */
-    post: operations["createEntry"];
+    post?: never;
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
-    trace?: never;
-  };
-  "/api/v1/entries/{id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: components["parameters"]["EntryID"];
-      };
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    post?: never;
-    /** Delete an entry */
-    delete: operations["deleteEntry"];
-    options?: never;
-    head?: never;
-    /** Update an entry */
-    patch: operations["updateEntry"];
     trace?: never;
   };
 }
@@ -268,23 +227,9 @@ export interface components {
       /** Format: date-time */
       timestamp: string;
     };
-    Collection: {
-      id: string;
-      slug: string;
-      title: string;
-      category: string;
-      description: string;
-      summary: string;
-      published: boolean;
-      /** Format: date-time */
-      created_at: string;
-      /** Format: date-time */
-      updated_at: string;
-    };
     Resource: {
       id: string;
       owner_id: string;
-      collection_id?: string;
       slug: string;
       title: string;
       description: string;
@@ -364,56 +309,14 @@ export interface components {
       /** Format: email */
       email: string;
     };
-    CreateResourceInput: {
-      collection_id?: string;
-      title: string;
-      description?: string;
-      /** @enum {string} */
-      visibility?: "private" | "unlisted" | "public";
-      /** @enum {string} */
-      status?: "draft" | "published" | "archived";
-      locale?: string;
-      estimated_minutes?: number;
-    };
-    UpdateResourceInput: {
-      collection_id?: string;
-      title?: string;
-      description?: string;
-      /** @enum {string} */
-      visibility?: "private" | "unlisted" | "public";
-      /** @enum {string} */
-      status?: "draft" | "published" | "archived";
-      locale?: string;
-      estimated_minutes?: number;
-    };
-    CreateEntryInput: {
-      position: number;
-      title: string;
-      content: string;
-      details?: string;
-      notes?: string;
-    };
-    UpdateEntryInput: {
-      position?: number;
-      title?: string;
-      content?: string;
-      details?: string;
-      notes?: string;
-    };
     UserResponse: {
       data: components["schemas"]["User"];
-    };
-    CollectionListResponse: {
-      data: components["schemas"]["Collection"][];
     };
     ResourceResponse: {
       data: components["schemas"]["Resource"];
     };
     ResourceListResponse: {
       data: components["schemas"]["Resource"][];
-    };
-    EntryResponse: {
-      data: components["schemas"]["Entry"];
     };
     EntryListResponse: {
       data: components["schemas"]["Entry"][];
@@ -510,7 +413,6 @@ export interface components {
   };
   parameters: {
     Slug: string;
-    EntryID: string;
   };
   requestBodies: never;
   headers: never;
@@ -534,26 +436,6 @@ export interface operations {
         };
         content: {
           "application/json": components["schemas"]["HealthStatus"];
-        };
-      };
-    };
-  };
-  listCollections: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Collection list */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["CollectionListResponse"];
         };
       };
     };
@@ -778,34 +660,6 @@ export interface operations {
       500: components["responses"]["InternalServerError"];
     };
   };
-  createResource: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["CreateResourceInput"];
-      };
-    };
-    responses: {
-      /** @description Resource created */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ResourceResponse"];
-        };
-      };
-      400: components["responses"]["BadRequest"];
-      401: components["responses"]["Unauthorized"];
-      409: components["responses"]["Conflict"];
-      500: components["responses"]["InternalServerError"];
-    };
-  };
   getResource: {
     parameters: {
       query?: never;
@@ -830,59 +684,6 @@ export interface operations {
       500: components["responses"]["InternalServerError"];
     };
   };
-  deleteResource: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        slug: components["parameters"]["Slug"];
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Resource deleted */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      401: components["responses"]["Unauthorized"];
-      404: components["responses"]["NotFound"];
-      500: components["responses"]["InternalServerError"];
-    };
-  };
-  updateResource: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        slug: components["parameters"]["Slug"];
-      };
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["UpdateResourceInput"];
-      };
-    };
-    responses: {
-      /** @description Resource updated */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ResourceResponse"];
-        };
-      };
-      400: components["responses"]["BadRequest"];
-      401: components["responses"]["Unauthorized"];
-      404: components["responses"]["NotFound"];
-      500: components["responses"]["InternalServerError"];
-    };
-  };
   listEntriesByResource: {
     parameters: {
       query?: never;
@@ -903,91 +704,6 @@ export interface operations {
           "application/json": components["schemas"]["EntryListResponse"];
         };
       };
-      500: components["responses"]["InternalServerError"];
-    };
-  };
-  createEntry: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        slug: components["parameters"]["Slug"];
-      };
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["CreateEntryInput"];
-      };
-    };
-    responses: {
-      /** @description Entry created */
-      201: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["EntryResponse"];
-        };
-      };
-      400: components["responses"]["BadRequest"];
-      401: components["responses"]["Unauthorized"];
-      404: components["responses"]["NotFound"];
-      409: components["responses"]["Conflict"];
-      500: components["responses"]["InternalServerError"];
-    };
-  };
-  deleteEntry: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: components["parameters"]["EntryID"];
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Entry deleted */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      401: components["responses"]["Unauthorized"];
-      404: components["responses"]["NotFound"];
-      500: components["responses"]["InternalServerError"];
-    };
-  };
-  updateEntry: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: components["parameters"]["EntryID"];
-      };
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["UpdateEntryInput"];
-      };
-    };
-    responses: {
-      /** @description Entry updated */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["EntryResponse"];
-        };
-      };
-      400: components["responses"]["BadRequest"];
-      401: components["responses"]["Unauthorized"];
-      404: components["responses"]["NotFound"];
-      409: components["responses"]["Conflict"];
       500: components["responses"]["InternalServerError"];
     };
   };

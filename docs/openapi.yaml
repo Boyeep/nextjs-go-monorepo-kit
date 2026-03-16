@@ -9,7 +9,6 @@ servers:
     description: Local development
 tags:
   - name: Health
-  - name: Collections
   - name: Auth
   - name: Analytics
   - name: Resources
@@ -27,18 +26,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
-  /api/v1/collections:
-    get:
-      tags: [Collections]
-      operationId: listCollections
-      summary: List public collections
-      responses:
-        "200":
-          description: Collection list
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CollectionListResponse"
   /api/v1/auth/register:
     post:
       tags: [Auth]
@@ -219,33 +206,6 @@ paths:
                 $ref: "#/components/schemas/ResourceListResponse"
         "500":
           $ref: "#/components/responses/InternalServerError"
-    post:
-      tags: [Resources]
-      operationId: createResource
-      summary: Create a resource
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreateResourceInput"
-      responses:
-        "201":
-          description: Resource created
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResourceResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "409":
-          $ref: "#/components/responses/Conflict"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
   /api/v1/resources/{slug}:
     parameters:
       - $ref: "#/components/parameters/Slug"
@@ -260,48 +220,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ResourceResponse"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-    patch:
-      tags: [Resources]
-      operationId: updateResource
-      summary: Update a resource
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UpdateResourceInput"
-      responses:
-        "200":
-          description: Resource updated
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResourceResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-    delete:
-      tags: [Resources]
-      operationId: deleteResource
-      summary: Delete a resource
-      security:
-        - bearerAuth: []
-      responses:
-        "204":
-          description: Resource deleted
-        "401":
-          $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
         "500":
@@ -322,82 +240,6 @@ paths:
                 $ref: "#/components/schemas/EntryListResponse"
         "500":
           $ref: "#/components/responses/InternalServerError"
-    post:
-      tags: [Entries]
-      operationId: createEntry
-      summary: Create an entry for a resource
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreateEntryInput"
-      responses:
-        "201":
-          description: Entry created
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EntryResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "409":
-          $ref: "#/components/responses/Conflict"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-  /api/v1/entries/{id}:
-    parameters:
-      - $ref: "#/components/parameters/EntryID"
-    patch:
-      tags: [Entries]
-      operationId: updateEntry
-      summary: Update an entry
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UpdateEntryInput"
-      responses:
-        "200":
-          description: Entry updated
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EntryResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "409":
-          $ref: "#/components/responses/Conflict"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-    delete:
-      tags: [Entries]
-      operationId: deleteEntry
-      summary: Delete an entry
-      security:
-        - bearerAuth: []
-      responses:
-        "204":
-          description: Entry deleted
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
 components:
   securitySchemes:
     bearerAuth:
@@ -407,12 +249,6 @@ components:
   parameters:
     Slug:
       name: slug
-      in: path
-      required: true
-      schema:
-        type: string
-    EntryID:
-      name: id
       in: path
       required: true
       schema:
@@ -490,40 +326,6 @@ components:
         timestamp:
           type: string
           format: date-time
-    Collection:
-      type: object
-      additionalProperties: false
-      required:
-        - id
-        - slug
-        - title
-        - category
-        - description
-        - summary
-        - published
-        - created_at
-        - updated_at
-      properties:
-        id:
-          type: string
-        slug:
-          type: string
-        title:
-          type: string
-        category:
-          type: string
-        description:
-          type: string
-        summary:
-          type: string
-        published:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
     Resource:
       type: object
       additionalProperties: false
@@ -544,8 +346,6 @@ components:
         id:
           type: string
         owner_id:
-          type: string
-        collection_id:
           type: string
         slug:
           type: string
@@ -719,76 +519,6 @@ components:
         email:
           type: string
           format: email
-    CreateResourceInput:
-      type: object
-      additionalProperties: false
-      required: [title]
-      properties:
-        collection_id:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        visibility:
-          type: string
-          enum: [private, unlisted, public]
-        status:
-          type: string
-          enum: [draft, published, archived]
-        locale:
-          type: string
-        estimated_minutes:
-          type: integer
-    UpdateResourceInput:
-      type: object
-      additionalProperties: false
-      properties:
-        collection_id:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        visibility:
-          type: string
-          enum: [private, unlisted, public]
-        status:
-          type: string
-          enum: [draft, published, archived]
-        locale:
-          type: string
-        estimated_minutes:
-          type: integer
-    CreateEntryInput:
-      type: object
-      additionalProperties: false
-      required: [position, title, content]
-      properties:
-        position:
-          type: integer
-        title:
-          type: string
-        content:
-          type: string
-        details:
-          type: string
-        notes:
-          type: string
-    UpdateEntryInput:
-      type: object
-      additionalProperties: false
-      properties:
-        position:
-          type: integer
-        title:
-          type: string
-        content:
-          type: string
-        details:
-          type: string
-        notes:
-          type: string
     UserResponse:
       type: object
       additionalProperties: false
@@ -796,15 +526,6 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/User"
-    CollectionListResponse:
-      type: object
-      additionalProperties: false
-      required: [data]
-      properties:
-        data:
-          type: array
-          items:
-            $ref: "#/components/schemas/Collection"
     ResourceResponse:
       type: object
       additionalProperties: false
@@ -821,13 +542,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Resource"
-    EntryResponse:
-      type: object
-      additionalProperties: false
-      required: [data]
-      properties:
-        data:
-          $ref: "#/components/schemas/Entry"
     EntryListResponse:
       type: object
       additionalProperties: false

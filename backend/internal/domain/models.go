@@ -10,22 +10,9 @@ type HealthStatus struct {
 	Timestamp time.Time `json:"timestamp"`
 }
 
-type Collection struct {
-	ID          string    `json:"id"`
-	Slug        string    `json:"slug"`
-	Title       string    `json:"title"`
-	Category    string    `json:"category"`
-	Description string    `json:"description"`
-	Summary     string    `json:"summary"`
-	Published   bool      `json:"published"`
-	CreatedAt   time.Time `json:"created_at"`
-	UpdatedAt   time.Time `json:"updated_at"`
-}
-
 type Resource struct {
 	ID               string    `json:"id"`
 	OwnerID          string    `json:"owner_id"`
-	CollectionID     string    `json:"collection_id,omitempty"`
 	Slug             string    `json:"slug"`
 	Title            string    `json:"title"`
 	Description      string    `json:"description"`
@@ -112,40 +99,4 @@ type AnalyticsOverview struct {
 	VisitDuration string `json:"visit_duration"`
 	DateRange     string `json:"date_range"`
 	Source        string `json:"source"`
-}
-
-type CreateResourceInput struct {
-	CollectionID     string `json:"collection_id"`
-	Title            string `json:"title"`
-	Description      string `json:"description"`
-	Visibility       string `json:"visibility"`
-	Status           string `json:"status"`
-	Locale           string `json:"locale"`
-	EstimatedMinutes int    `json:"estimated_minutes"`
-}
-
-type UpdateResourceInput struct {
-	CollectionID     *string `json:"collection_id"`
-	Title            *string `json:"title"`
-	Description      *string `json:"description"`
-	Visibility       *string `json:"visibility"`
-	Status           *string `json:"status"`
-	Locale           *string `json:"locale"`
-	EstimatedMinutes *int    `json:"estimated_minutes"`
-}
-
-type CreateEntryInput struct {
-	Position int    `json:"position"`
-	Title    string `json:"title"`
-	Content  string `json:"content"`
-	Details  string `json:"details"`
-	Notes    string `json:"notes"`
-}
-
-type UpdateEntryInput struct {
-	Position *int    `json:"position"`
-	Title    *string `json:"title"`
-	Content  *string `json:"content"`
-	Details  *string `json:"details"`
-	Notes    *string `json:"notes"`
 }

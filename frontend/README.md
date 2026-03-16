@@ -1,8 +1,7 @@
 # Frontend Template
 
 This is a Next.js starter for a general full-stack app with authentication,
-dashboard patterns, sample catalog/resource flows, analytics hooks, and a
-feature-based `src` layout.
+dashboard patterns, analytics hooks, and a feature-based `src` layout.
 
 ## Stack
 
@@ -23,7 +22,7 @@ src/
   components/
   features/
     auth/
-    collections/ # collection/catalog module
+    dashboard/   # private owner workspace
     resources/   # resource/detail module
     home/
     shared/

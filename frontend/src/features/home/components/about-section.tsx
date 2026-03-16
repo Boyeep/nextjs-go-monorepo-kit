@@ -24,8 +24,8 @@ export function AboutSection() {
             building blocks.
           </p>
           <p className="m-0 leading-[1.8] text-[var(--muted-text)]">
-            The sample collection and resource modules are meant to be replaced,
-            renamed, or extended based on the kind of product you want to build.
+            The structure is meant to be replaced, renamed, or extended based on
+            the kind of product you want to build.
           </p>
         </div>
       </div>

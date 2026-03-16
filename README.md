@@ -22,8 +22,8 @@ Built to keep the developer-experience strengths of polished frontend starters w
 
 ## Monorepo Structure
 
-- `frontend/`: Next.js app with auth, dashboard, collections, resources, and shared UI primitives
-- `backend/`: Go API with migrations, auth, analytics, collections, resources, and entry endpoints
+- `frontend/`: Next.js app with auth, dashboard, resources, and shared UI primitives
+- `backend/`: Go API with migrations, auth, analytics, and read-only resource entry endpoints
 - `scripts/`: root development and verification scripts
 - `.github/`: repository-level CI workflow
 
@@ -88,7 +88,7 @@ npm run e2e
 
 - reusable Next.js + Go monorepo structure
 - auth flows with register, login, email verification, and password reset
-- resource and entry CRUD patterns for product-specific modules
+- read-only resource and entry patterns for product-specific modules
 - protected dashboard and analytics-ready frontend patterns
 - Dockerized local database setup
 - lint, format check, utility tests, component tests, Playwright smoke tests, production build, Go test, and Go build checks

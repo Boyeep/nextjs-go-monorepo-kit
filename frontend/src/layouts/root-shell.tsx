@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { FloatingActionLink } from "@/components/floating-action-link";
 import { Providers } from "@/components/providers";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -21,7 +20,6 @@ export function RootShell({ children }: RootShellProps) {
         <SiteHeader />
         <div id="main-content">{children}</div>
         <SiteFooter />
-        <FloatingActionLink />
       </div>
     </Providers>
   );

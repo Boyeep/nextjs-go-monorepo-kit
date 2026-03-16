@@ -3,7 +3,6 @@ DROP TABLE IF EXISTS user_resource_progress;
 DROP TABLE IF EXISTS resource_tags;
 DROP TABLE IF EXISTS entries;
 DROP TABLE IF EXISTS resources;
-DROP TABLE IF EXISTS collections;
 DROP TABLE IF EXISTS user_sessions;
 DROP TABLE IF EXISTS users;
 

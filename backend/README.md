@@ -1,7 +1,7 @@
 # Backend Template
 
 This is a Go backend starter for a general full-stack app. It ships with auth,
-sample collection/resource CRUD, analytics endpoints, PostgreSQL support, and
+resource and entry read endpoints, analytics endpoints, PostgreSQL support, and
 SQL migrations.
 
 ## Stack
@@ -30,19 +30,12 @@ GET /health
 
 ```text
 GET  /health
-GET  /api/v1/collections
 POST /api/v1/auth/register
 POST /api/v1/auth/login
 GET  /api/v1/auth/me
 GET  /api/v1/resources
 GET  /api/v1/resources/:slug
 GET  /api/v1/resources/:slug/entries
-POST /api/v1/resources
-PATCH /api/v1/resources/:slug
-DELETE /api/v1/resources/:slug
-POST /api/v1/resources/:slug/entries
-PATCH /api/v1/entries/:id
-DELETE /api/v1/entries/:id
 ```
 
 `/api/v1/auth/me` expects:
@@ -50,9 +43,6 @@ DELETE /api/v1/entries/:id
 ```text
 Authorization: Bearer <access_token>
 ```
-
-Protected resource write routes also require the same Bearer token.
-Entry create, update, and delete routes require the same Bearer token.
 
 ## Environment
 
@@ -108,7 +98,6 @@ Suggested flow:
 
 - auth
 - users
-- collections
 - resources
 - entries
 - project-specific modules
@@ -131,7 +120,8 @@ Good first integrations:
 - login
 - register
 - fetch current user
-- fetch collections
+- fetch public resources
+- fetch public entries for a resource
 
 ## Password Reset Email
 

@@ -1,4 +1,3 @@
-import type { Collection } from "@/types/collection";
 import type { Entry, Resource } from "@/types/resource";
 
 export const whyChooseUs = [
@@ -6,7 +5,7 @@ export const whyChooseUs = [
     icon: "🧩",
     title: "Modular by default",
     description:
-      "Start with a reusable structure, then swap the sample modules for your own domain.",
+      "Start with a reusable structure, then swap the starter patterns for your own domain.",
   },
   {
     icon: "🚀",
@@ -18,7 +17,7 @@ export const whyChooseUs = [
     icon: "🔌",
     title: "Easy to adapt",
     description:
-      "Collections and resources act as example modules you can rename or replace.",
+      "The layout, auth flow, and dashboard shells are meant to be renamed, reshaped, or replaced.",
   },
   {
     icon: "📈",
@@ -31,7 +30,7 @@ export const whyChooseUs = [
 export const featuredTemplates = [
   {
     title: "Starter Catalog",
-    description: "Example collection group",
+    description: "Example product direction",
     category: "Catalog",
   },
   {
@@ -56,104 +55,10 @@ export const featuredTemplates = [
   },
 ];
 
-export const collectionCategories = [
-  "All",
-  "Catalog",
-  "Product",
-  "Content",
-  "Portal",
-  "Ops",
-];
-
-export const catalogCollections = [
-  {
-    title: "Onboarding Checklist",
-    author: "Alex",
-    category: "Ops",
-    summary:
-      "A sample internal workflow resource you can replace with your own data model.",
-  },
-  {
-    title: "Product Launch Plan",
-    author: "Jamie",
-    category: "Product",
-    summary:
-      "An example collection item for planning, collaboration, and delivery.",
-  },
-  {
-    title: "Content Calendar",
-    author: "Morgan",
-    category: "Content",
-    summary:
-      "A demo entry showing how scheduled content could appear in the UI.",
-  },
-  {
-    title: "Client Resource Pack",
-    author: "Taylor",
-    category: "Portal",
-    summary: "A sample private resource collection for clients or customers.",
-  },
-  {
-    title: "Asset Library",
-    author: "Jordan",
-    category: "Catalog",
-    summary:
-      "A generic catalog example suitable for media, docs, templates, or inventory.",
-  },
-];
-
-export const sampleCollectionIdeas = [
-  {
-    title: "Starter Collection",
-    description:
-      "Use this module as a base for catalogs, departments, workspaces, or content groups.",
-    category: "Catalog",
-  },
-  {
-    title: "Operations Playbook",
-    description:
-      "A sample collection for team processes, SOPs, and internal resources.",
-    category: "Ops",
-  },
-  {
-    title: "Product Workspace",
-    description:
-      "An example top-level grouping for features, roadmaps, or customer journeys.",
-    category: "Product",
-  },
-  {
-    title: "Content Workspace",
-    description:
-      "A flexible set of pages and resources for editorial or media-heavy projects.",
-    category: "Content",
-  },
-  {
-    title: "Client Portal",
-    description:
-      "A reusable pattern for authenticated resources, downloads, and account tools.",
-    category: "Portal",
-  },
-];
-
-export const sampleCollections: Collection[] = sampleCollectionIdeas.map(
-  (item, index) => ({
-    id: `collection-${index + 1}`,
-    slug: item.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-    title: item.title,
-    category: item.category,
-    description: item.description,
-    summary: item.description,
-    published: true,
-    created_at: "2026-01-01T00:00:00.000Z",
-    updated_at: "2026-01-01T00:00:00.000Z",
-  }),
-);
-
 export const sampleResources: Resource[] = [
   {
     id: "resource-client-onboarding",
     owner_id: "demo-owner",
-    collection_id: sampleCollections[4]?.id,
     slug: "client-onboarding-kit",
     title: "Client Onboarding Kit",
     description:
@@ -169,7 +74,6 @@ export const sampleResources: Resource[] = [
   {
     id: "resource-content-brief",
     owner_id: "demo-owner",
-    collection_id: sampleCollections[3]?.id,
     slug: "content-brief-template",
     title: "Content Brief Template",
     description:

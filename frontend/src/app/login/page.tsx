@@ -5,7 +5,7 @@ export default function LoginPage() {
     <AuthFormShell
       mode="login"
       title="Welcome back"
-      description="Sign in to manage your resources, account data, and dashboard access."
+      description="Sign in to access your account, private dashboard, and protected starter flows."
       submitLabel="Login"
       footerText="Need an account?"
       footerLinkLabel="Sign up"

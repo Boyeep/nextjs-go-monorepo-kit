@@ -4,7 +4,6 @@
 
 - support user accounts and authentication
 - allow resources owned by users
-- let resources optionally belong to collections
 - track publishing state and soft ownership metadata
 - track user engagement progress over time
 
@@ -33,18 +32,6 @@ Key fields:
 - `expires_at`
 - `revoked_at`
 
-### `collections`
-
-High-level groupings such as portals, departments, products, or content hubs.
-
-Key fields:
-- `id`
-- `slug`
-- `title`
-- `category`
-- `description`
-- `is_published`
-
 ### `resources`
 
 User-created resources.
@@ -52,7 +39,6 @@ User-created resources.
 Key fields:
 - `id`
 - `owner_id`
-- `collection_id`
 - `slug`
 - `title`
 - `description`
@@ -62,7 +48,6 @@ Key fields:
 
 Notes:
 - a resource belongs to one owner
-- a resource can optionally be linked to one collection
 
 ### `entries`
 
@@ -103,7 +88,6 @@ Key fields:
 ## Relationship Summary
 
 - one `user` has many `resources`
-- one `collection` has many `resources`
 - one `resource` has many `entries`
 - one `user` has many `user_sessions`
 - one `user` has many set progress rows
@@ -112,7 +96,6 @@ Key fields:
 ## First API Modules Suggested
 
 1. `auth`
-2. `collections`
-3. `resources`
-4. `entries`
-5. `me/progress`
+2. `resources`
+3. `entries`
+4. `me/progress`

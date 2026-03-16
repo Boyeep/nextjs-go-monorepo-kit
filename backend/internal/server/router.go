@@ -26,21 +26,18 @@ func NewRouter(cfg config.Config, db *pgxpool.Pool) http.Handler {
 	entryRepository := repository.NewEntryRepository(db)
 
 	healthService := service.NewHealthService(cfg, db)
-	collectionService := service.NewCollectionService()
 	authService := service.NewAuthService(cfg, userRepository)
 	analyticsService := service.NewAnalyticsService(cfg)
 	resourceService := service.NewResourceService(resourceRepository)
 	entryService := service.NewEntryService(entryRepository)
 
 	healthHandler := httpHandler.NewHealthHandler(healthService)
-	collectionHandler := httpHandler.NewCollectionHandler(collectionService)
 	authHandler := httpHandler.NewAuthHandler(authService)
 	analyticsHandler := httpHandler.NewAnalyticsHandler(analyticsService)
 	resourceHandler := httpHandler.NewResourceHandler(resourceService)
 	entryHandler := httpHandler.NewEntryHandler(entryService)
 
 	mux.HandleFunc("GET /health", healthHandler.Get)
-	mux.HandleFunc("GET /api/v1/collections", collectionHandler.List)
 	mux.HandleFunc("POST /api/v1/auth/register", authHandler.Register)
 	mux.HandleFunc("POST /api/v1/auth/login", authHandler.Login)
 	mux.HandleFunc("POST /api/v1/auth/verify-email", authHandler.VerifyEmail)
@@ -55,12 +52,6 @@ func NewRouter(cfg config.Config, db *pgxpool.Pool) http.Handler {
 	mux.HandleFunc("GET /api/v1/resources", resourceHandler.List)
 	mux.HandleFunc("GET /api/v1/resources/{slug}", resourceHandler.Get)
 	mux.HandleFunc("GET /api/v1/resources/{slug}/entries", entryHandler.ListByResource)
-	mux.Handle("POST /api/v1/resources", authMiddleware(authService, http.HandlerFunc(resourceHandler.Create)))
-	mux.Handle("PATCH /api/v1/resources/{slug}", authMiddleware(authService, http.HandlerFunc(resourceHandler.Update)))
-	mux.Handle("DELETE /api/v1/resources/{slug}", authMiddleware(authService, http.HandlerFunc(resourceHandler.Delete)))
-	mux.Handle("POST /api/v1/resources/{slug}/entries", authMiddleware(authService, http.HandlerFunc(entryHandler.Create)))
-	mux.Handle("PATCH /api/v1/entries/{id}", authMiddleware(authService, http.HandlerFunc(entryHandler.Update)))
-	mux.Handle("DELETE /api/v1/entries/{id}", authMiddleware(authService, http.HandlerFunc(entryHandler.Delete)))
 
 	return withCORS(cfg, withSecurityHeaders(withRequestID(withLogging(mux))))
 }

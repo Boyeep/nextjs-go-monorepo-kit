@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "Next.js template",
     "Go API",
     "full-stack starter",
-    "resource dashboard",
+    "owner dashboard",
     "auth starter",
   ],
   openGraph: {

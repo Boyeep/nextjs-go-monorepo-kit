@@ -51,27 +51,9 @@ CREATE TABLE IF NOT EXISTS user_sessions (
 CREATE INDEX IF NOT EXISTS idx_user_sessions_user_id ON user_sessions(user_id);
 CREATE INDEX IF NOT EXISTS idx_user_sessions_expires_at ON user_sessions(expires_at);
 
-CREATE TABLE IF NOT EXISTS collections (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  slug VARCHAR(120) NOT NULL UNIQUE,
-  title VARCHAR(160) NOT NULL,
-  category VARCHAR(80) NOT NULL,
-  description TEXT,
-  summary TEXT,
-  thumbnail_url TEXT,
-  is_published BOOLEAN NOT NULL DEFAULT TRUE,
-  created_by UUID REFERENCES users(id) ON DELETE SET NULL,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-
-CREATE INDEX IF NOT EXISTS idx_collections_category ON collections(category);
-CREATE INDEX IF NOT EXISTS idx_collections_is_published ON collections(is_published);
-
 CREATE TABLE IF NOT EXISTS resources (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   owner_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  collection_id UUID REFERENCES collections(id) ON DELETE SET NULL,
   slug VARCHAR(160) NOT NULL UNIQUE,
   title VARCHAR(160) NOT NULL,
   description TEXT,
@@ -86,7 +68,6 @@ CREATE TABLE IF NOT EXISTS resources (
 );
 
 CREATE INDEX IF NOT EXISTS idx_resources_owner_id ON resources(owner_id);
-CREATE INDEX IF NOT EXISTS idx_resources_collection_id ON resources(collection_id);
 CREATE INDEX IF NOT EXISTS idx_resources_visibility ON resources(visibility);
 CREATE INDEX IF NOT EXISTS idx_resources_status ON resources(status);
 

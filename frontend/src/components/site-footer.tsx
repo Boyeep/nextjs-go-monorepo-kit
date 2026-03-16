@@ -2,9 +2,10 @@ import Link from "next/link";
 import { appConfig, brandInitials } from "@/lib/app-config";
 
 const footerLinks = [
-  { href: "/collections", label: "Collections" },
+  { href: "/", label: "Home" },
+  { href: "/#about", label: "About" },
   { href: "/login", label: "Sandbox Login" },
-  { href: "/create-resource", label: "Create Resource" },
+  { href: "/signup", label: "Create Account" },
 ];
 
 export function SiteFooter() {
@@ -30,7 +31,8 @@ export function SiteFooter() {
 
           <p className="m-0 mx-auto max-w-[660px] text-[0.98rem] leading-8 text-[var(--muted-text)]">
             A clean launch surface for custom products, private dashboards, and
-            collection-based tools that need real structure from the start.
+            polished auth-first experiences that need real structure from the
+            start.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-2.5">

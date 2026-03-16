@@ -13,7 +13,7 @@ import { featuredTemplates } from "@/lib/site-data";
 const quickFacts = [
   "Next.js + Go foundation",
   "Auth and dashboard included",
-  "Sample modules ready to swap",
+  "Flexible sections ready to adapt",
   "Sandbox-friendly by default",
 ];
 
@@ -74,29 +74,29 @@ export function CenteredHomePage() {
           </h1>
           <p className="m-0 text-[1.06rem] leading-[1.9] text-[var(--muted-text)] max-[720px]:text-[1rem]">
             {appConfig.name} gives you a clean starting surface with a Next.js
-            frontend, Go API, account flows, and sample resource patterns that
-            are ready to become your own product.
+            frontend, Go API, account flows, and adaptable product patterns that
+            are ready to become your own experience.
           </p>
         </div>
 
         <Link
-          href="/collections"
+          href="/login"
           className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--accent-brand)] underline decoration-[0.08em] underline-offset-4 transition-transform hover:translate-x-1"
         >
-          Preview the starter surfaces
+          Preview the starter access flow
           <ArrowUpRight className="h-5 w-5" />
         </Link>
 
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Button asChild className="min-w-[220px]">
-            <Link href="/collections">See starter modules</Link>
+            <Link href="/login">Open sandbox access</Link>
           </Button>
           <Button
             asChild
             variant="secondary"
             className="min-w-[220px] border-[rgba(31,41,55,0.1)] bg-white/84"
           >
-            <Link href="/login">Open sandbox access</Link>
+            <Link href="/signup">Create an account</Link>
           </Button>
         </div>
 

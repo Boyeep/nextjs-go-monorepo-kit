@@ -15,12 +15,12 @@ export function HeroSection() {
             app starter.
           </h1>
           <p className="m-0 max-w-[580px] text-[1.08rem] leading-[1.8] text-[var(--muted-text)]">
-            {appConfig.name} gives you auth, dashboard patterns, collections,
-            resources, and reusable UI blocks you can adapt to your own product.
+            {appConfig.name} gives you auth, dashboard patterns, and reusable UI
+            blocks you can adapt to your own product.
           </p>
           <div className="flex flex-wrap items-center gap-4">
             <Button asChild>
-              <Link href="/collections">Browse starter modules</Link>
+              <Link href="/login">Open sandbox access</Link>
             </Button>
             <Button asChild variant="secondary">
               <Link href="/signup">Create an account</Link>
@@ -29,15 +29,15 @@ export function HeroSection() {
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <div className="grid min-w-[110px] gap-0.5">
               <strong className="font-[family-name:var(--font-display)] text-[1.7rem]">
-                3
-              </strong>
-              <span>starter modules</span>
-            </div>
-            <div className="grid min-w-[110px] gap-0.5">
-              <strong className="font-[family-name:var(--font-display)] text-[1.7rem]">
                 Auth
               </strong>
               <span>account flows</span>
+            </div>
+            <div className="grid min-w-[110px] gap-0.5">
+              <strong className="font-[family-name:var(--font-display)] text-[1.7rem]">
+                Owner
+              </strong>
+              <span>dashboard access</span>
             </div>
             <div className="grid min-w-[110px] gap-0.5">
               <strong className="font-[family-name:var(--font-display)] text-[1.7rem]">
@@ -49,9 +49,9 @@ export function HeroSection() {
         </div>
         <div className="relative min-h-[540px] overflow-hidden rounded-[32px] border border-white/70 bg-[linear-gradient(180deg,rgba(31,111,120,0.16),rgba(31,111,120,0.03))] shadow-[var(--shadow)] max-[960px]:min-h-[420px]">
           <div className="absolute top-5 left-5 z-[1] rounded-[20px] border border-white/70 bg-white/90 px-4 py-3 shadow-[var(--shadow)] backdrop-blur-[14px]">
-            <strong>Sample workspace</strong>
+            <strong>Starter workspace</strong>
             <div>
-              Swap the sample content for your actual product in one place.
+              Swap the starter content for your actual product in one place.
             </div>
           </div>
           <PlaceholderArt

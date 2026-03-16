@@ -46,32 +46,13 @@ func SeedDemoData(ctx context.Context, db *pgxpool.Pool, cfg config.Config) erro
 		return fmt.Errorf("upsert demo user: %w", err)
 	}
 
-	var collectionID string
-	err = tx.QueryRow(ctx, `
-		INSERT INTO collections (slug, title, category, description, summary, is_published)
-		VALUES ('demo-operations', 'Demo Operations', 'Ops', 'Seeded collection for local template demos.', 'A ready-to-browse collection created automatically for local development.', true)
-		ON CONFLICT (slug)
-		DO UPDATE SET
-			title = EXCLUDED.title,
-			category = EXCLUDED.category,
-			description = EXCLUDED.description,
-			summary = EXCLUDED.summary,
-			is_published = EXCLUDED.is_published,
-			updated_at = NOW()
-		RETURNING id
-	`).Scan(&collectionID)
-	if err != nil {
-		return fmt.Errorf("upsert demo collection: %w", err)
-	}
-
 	var resourceID string
 	err = tx.QueryRow(ctx, `
-		INSERT INTO resources (owner_id, collection_id, slug, title, description, visibility, status, locale, estimated_minutes, entry_count)
-		VALUES ($1, $2, 'demo-resource', 'Demo Resource', 'A seeded resource so the template has meaningful content on first boot.', 'public', 'published', 'en', 6, 3)
+		INSERT INTO resources (owner_id, slug, title, description, visibility, status, locale, estimated_minutes, entry_count)
+		VALUES ($1, 'demo-resource', 'Demo Resource', 'A seeded resource so the template has meaningful content on first boot.', 'public', 'published', 'en', 6, 3)
 		ON CONFLICT (slug)
 		DO UPDATE SET
 			owner_id = EXCLUDED.owner_id,
-			collection_id = EXCLUDED.collection_id,
 			title = EXCLUDED.title,
 			description = EXCLUDED.description,
 			visibility = EXCLUDED.visibility,
@@ -81,7 +62,7 @@ func SeedDemoData(ctx context.Context, db *pgxpool.Pool, cfg config.Config) erro
 			entry_count = EXCLUDED.entry_count,
 			updated_at = NOW()
 		RETURNING id
-	`, userID, collectionID).Scan(&resourceID)
+	`, userID).Scan(&resourceID)
 	if err != nil {
 		return fmt.Errorf("upsert demo resource: %w", err)
 	}
@@ -92,7 +73,7 @@ func SeedDemoData(ctx context.Context, db *pgxpool.Pool, cfg config.Config) erro
 		content  string
 	}{
 		{1, "Welcome note", "This demo entry shows how a seeded resource can explain your product or workflow."},
-		{2, "Editing flow", "Use the dashboard and create-resource flow to replace demo content with your own modules."},
+		{2, "Editing flow", "Use the dashboard and auth flows to replace demo content with your own product experience."},
 		{3, "Deployment handoff", "This starter is meant to move from local development to production with minimal structural rework."},
 	}
 

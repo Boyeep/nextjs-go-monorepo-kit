@@ -14,19 +14,22 @@ test.describe("starter smoke flows", () => {
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("link", { name: "See starter modules" }),
+      page.getByRole("link", { name: "Open sandbox access" }),
     ).toBeVisible();
 
     await page.goto("/collections");
 
     await expect(
       page.getByRole("heading", {
-        name: "Use these sample modules as a base for your own product structure.",
+        name: "The page you asked for is not part of this starter.",
       }),
     ).toBeVisible();
+
+    await page.goto("/create-resource");
+
     await expect(
       page.getByRole("heading", {
-        name: "Reusable detail pages backed by the API.",
+        name: "The page you asked for is not part of this starter.",
       }),
     ).toBeVisible();
   });
@@ -50,11 +53,11 @@ test.describe("starter smoke flows", () => {
     await expect(page.getByText("Owner Dashboard")).toBeVisible();
     await expect(
       page.getByRole("heading", {
-        name: "Manage your sample resources from one private workspace.",
+        name: "Review owner access, account context, and analytics from one private workspace.",
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "Your Resources" }),
+      page.getByRole("heading", { name: "Session Overview" }),
     ).toBeVisible();
   });
 });

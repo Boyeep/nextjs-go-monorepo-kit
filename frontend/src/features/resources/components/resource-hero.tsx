@@ -32,9 +32,9 @@ export function ResourceHero({ resource }: ResourceHeroProps) {
         </p>
         <div>
           <Button asChild variant="secondary">
-            <Link href="/collections">
+            <Link href="/">
               <ArrowLeft className="h-4 w-4" />
-              Back to collections
+              Back home
             </Link>
           </Button>
         </div>
