@@ -41,7 +41,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-30 px-0 pt-4 pb-0">
-      <div className="relative mx-auto flex w-[min(var(--max-width),calc(100%-2rem))] items-center justify-between gap-4 rounded-[28px] border border-white/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.72),rgba(255,245,238,0.68))] px-4 py-3 shadow-[0_12px_30px_rgba(31,41,55,0.04)] backdrop-blur-[24px] max-[900px]:w-[min(var(--max-width),calc(100%-1.25rem))]">
+      <div className="relative mx-auto grid w-[min(var(--max-width),calc(100%-2rem))] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4 rounded-[28px] border border-white/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.72),rgba(255,245,238,0.68))] px-4 py-3 shadow-[0_12px_30px_rgba(31,41,55,0.04)] backdrop-blur-[24px] max-[900px]:flex max-[900px]:w-[min(var(--max-width),calc(100%-1.25rem))] max-[900px]:justify-between">
         <Link href="/" className="inline-flex min-w-0 items-center gap-3">
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[18px] bg-[linear-gradient(135deg,rgba(239,125,87,0.95),rgba(255,185,103,0.9))] text-sm font-semibold tracking-[0.18em] text-white uppercase shadow-[0_10px_24px_rgba(239,125,87,0.24)]">
             {brandInitials}
@@ -56,7 +56,7 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav
-          className="flex items-center gap-1 rounded-full border border-white/80 bg-white/70 p-1 shadow-[0_10px_24px_rgba(31,41,55,0.05)] max-[900px]:hidden"
+          className="flex items-center justify-center gap-2 max-[900px]:hidden"
           aria-label="Primary"
         >
           {navItems.map((item) => (
@@ -65,7 +65,7 @@ export function SiteHeader() {
               href={item.href}
               aria-current={pathname === item.href ? "page" : undefined}
               className={cn(
-                "rounded-full px-3.5 py-2.5 text-sm font-medium text-[var(--muted-text)] transition-colors hover:bg-[rgba(31,111,120,0.1)] hover:text-[var(--text)]",
+                "rounded-full px-4 py-2.5 text-sm font-medium text-[var(--muted-text)] transition-colors hover:bg-[rgba(31,111,120,0.08)] hover:text-[var(--text)]",
                 pathname === item.href &&
                   "bg-[rgba(31,111,120,0.1)] text-[var(--text)]",
               )}
@@ -87,7 +87,7 @@ export function SiteHeader() {
             </Link>
           ) : null}
         </nav>
-        <div className="flex items-center gap-2 max-[900px]:hidden">
+        <div className="flex items-center gap-2 justify-self-end max-[900px]:hidden">
           {user ? (
             <>
               <span className="rounded-full border border-white/80 bg-white/78 px-4 py-2 text-sm text-[var(--muted-text)] shadow-sm">

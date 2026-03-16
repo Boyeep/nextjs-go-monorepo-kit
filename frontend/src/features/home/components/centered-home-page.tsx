@@ -51,27 +51,18 @@ export function CenteredHomePage() {
       />
 
       <section className="relative mx-auto flex min-h-[calc(100svh-7.5rem)] w-[min(1120px,calc(100%-2rem))] flex-col items-center justify-center gap-4 py-[clamp(1.5rem,3.4vw,3rem)] text-center max-[720px]:min-h-[calc(100svh-6.75rem)] max-[720px]:w-[min(var(--max-width),calc(100%-1.25rem))]">
-        <div className="relative grid w-full max-w-[1000px] gap-4 overflow-hidden rounded-[42px] border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.62),rgba(255,247,240,0.42))] px-[clamp(1.4rem,3vw,2.5rem)] py-[clamp(1.5rem,3.5vw,2.6rem)] shadow-[0_30px_90px_rgba(31,41,55,0.11)] backdrop-blur-[22px]">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -top-10 left-10 h-28 w-28 rounded-full bg-[rgba(255,214,188,0.58)] blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute right-8 bottom-0 h-32 w-32 rounded-full bg-[rgba(31,111,120,0.12)] blur-3xl"
-          />
-
-          <div className="relative inline-flex items-center justify-center justify-self-center rounded-[30px] border border-white/80 bg-white/76 p-2.5 shadow-[var(--shadow)] backdrop-blur-[18px]">
+        <div className="grid max-w-[1000px] justify-items-center gap-4 px-[clamp(0.5rem,2vw,1rem)] py-[clamp(1rem,2.5vw,2rem)]">
+          <div className="relative inline-flex items-center justify-center rounded-[30px] border border-white/80 bg-white/76 p-2.5 shadow-[var(--shadow)] backdrop-blur-[18px]">
             <div className="flex h-14 w-14 items-center justify-center rounded-[20px] bg-[linear-gradient(135deg,rgba(239,125,87,0.92),rgba(255,185,103,0.9))] text-white shadow-[0_18px_34px_rgba(239,125,87,0.22)]">
               <Sparkles className="h-7 w-7" />
             </div>
           </div>
 
-          <span className="relative inline-flex items-center justify-self-center rounded-full border border-[rgba(31,111,120,0.14)] bg-white/76 px-4 py-2 text-[0.78rem] font-bold tracking-[0.18em] text-[var(--accent-brand)] uppercase shadow-sm backdrop-blur-[12px]">
+          <span className="relative inline-flex items-center rounded-full border border-[rgba(31,111,120,0.14)] bg-white/76 px-4 py-2 text-[0.78rem] font-bold tracking-[0.18em] text-[var(--accent-brand)] uppercase shadow-sm backdrop-blur-[12px]">
             starter sandbox
           </span>
 
-          <div className="relative grid max-w-[920px] gap-3 justify-self-center">
+          <div className="relative grid max-w-[920px] gap-3">
             <h1 className="m-0 font-[family-name:var(--font-display)] text-[clamp(2.7rem,5.1vw,4.5rem)] leading-[0.92] tracking-[-0.07em] text-[var(--text)]">
               Build your next product from a{" "}
               <span className="bg-[linear-gradient(135deg,var(--brand-deep),var(--brand),#f4a261)] bg-clip-text text-transparent">
@@ -86,7 +77,7 @@ export function CenteredHomePage() {
             </p>
           </div>
 
-          <div className="relative flex flex-wrap items-center justify-center gap-3 rounded-full border border-white/70 bg-white/54 p-1.5 shadow-[0_16px_36px_rgba(31,41,55,0.06)] backdrop-blur-[16px] max-[560px]:rounded-[28px]">
+          <div className="relative flex flex-wrap items-center justify-center gap-3 pt-2">
             <Button asChild className="min-w-[220px]">
               <Link href="/login">Open sandbox access</Link>
             </Button>
