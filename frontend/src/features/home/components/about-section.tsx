@@ -1,4 +1,3 @@
-import { ArrowRight, LayoutDashboard } from "lucide-react";
 import { featuredTemplates } from "@/lib/site-data";
 
 const landingHighlights = [
@@ -6,20 +5,16 @@ const landingHighlights = [
     step: "01",
     title: "Focused first impression",
     description: "Clear hero copy with one dominant action path.",
-    Icon: ArrowRight,
     accentClass:
       "bg-[linear-gradient(180deg,rgba(255,244,236,0.96),rgba(255,255,255,0.86))]",
-    iconClass: "bg-[rgba(239,125,87,0.12)] text-[var(--brand-deep)]",
   },
   {
     step: "02",
     title: "Ready to expand",
     description:
       "Supporting sections hint at the system now and can grow into a fuller marketing page later.",
-    Icon: LayoutDashboard,
     accentClass:
       "bg-[linear-gradient(180deg,rgba(239,250,250,0.96),rgba(255,255,255,0.88))]",
-    iconClass: "bg-[rgba(31,111,120,0.1)] text-[var(--accent-brand)]",
   },
 ];
 
@@ -48,24 +43,15 @@ export function AboutSection() {
 
           <div className="grid gap-3 sm:grid-cols-2">
             {landingHighlights.map(
-              ({ step, title, description, Icon, accentClass, iconClass }) => (
+              ({ step, title, description, accentClass }) => (
                 <article
                   key={step}
                   className={`group relative overflow-hidden rounded-[28px] border border-white/85 p-5 shadow-[0_18px_40px_rgba(31,41,55,0.08)] transition-transform duration-200 hover:-translate-y-1 ${accentClass}`}
                 >
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute -top-8 right-[-0.5rem] h-20 w-20 rounded-full bg-white/45 blur-2xl"
-                  />
                   <div className="relative grid gap-4">
-                    <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-start gap-3">
                       <span className="text-[0.75rem] font-bold tracking-[0.18em] text-[var(--muted-text)] uppercase">
                         {step}
-                      </span>
-                      <span
-                        className={`flex h-10 w-10 items-center justify-center rounded-[16px] ${iconClass}`}
-                      >
-                        <Icon className="h-4.5 w-4.5" />
                       </span>
                     </div>
                     <div className="grid gap-2">

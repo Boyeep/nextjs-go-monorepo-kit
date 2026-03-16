@@ -223,6 +223,7 @@ export function SandboxPage() {
                 <Label htmlFor="sandbox-notes">Notes</Label>
                 <Textarea
                   id="sandbox-notes"
+                  className="resize-none"
                   placeholder="Short note"
                   defaultValue="This starter already covers the basics."
                 />
