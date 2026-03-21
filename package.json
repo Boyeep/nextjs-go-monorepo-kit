@@ -6,6 +6,9 @@
     "dev": "node scripts/dev.mjs",
     "dev:down": "docker compose down",
     "api:types": "openapi-typescript ./docs/openapi.yaml -o ./frontend/src/generated/openapi.ts",
+    "check:contract": "node scripts/check-contract-drift.mjs",
+    "check:workflows": "node scripts/check-actionlint.mjs",
+    "check:secrets": "node scripts/check-secrets.mjs",
     "check": "node scripts/check.mjs",
     "e2e": "node scripts/e2e.mjs",
     "e2e:install": "npm --prefix frontend exec playwright install chromium"

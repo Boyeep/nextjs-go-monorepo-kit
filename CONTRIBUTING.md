@@ -9,6 +9,7 @@ Thanks for contributing to `nextjs-go-monorepo-kit`.
 3. Run the project checks from the repo root:
 
 ```bash
+npm run check:contract
 npm run check
 ```
 
@@ -23,6 +24,19 @@ npm run dev
 This starts the frontend, backend, and Dockerized PostgreSQL together.
 
 Use the Node version pinned in [`.nvmrc`](./.nvmrc) when working on the frontend.
+
+If you change the API contract, also run:
+
+```bash
+npm run check:contract
+```
+
+If Go is available locally, you can also run:
+
+```bash
+npm run check:workflows
+npm run check:secrets
+```
 
 ## Commit Style
 

@@ -8,6 +8,7 @@ Describe the change clearly and briefly.
 
 ## Verification
 
+- [ ] `npm run check:contract` when API contract changes
 - [ ] `npm run check`
 - [ ] Manual verification completed when needed
 

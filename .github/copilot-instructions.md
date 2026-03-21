@@ -1,6 +1,6 @@
 # GitHub Copilot Instructions
 
-Use [AGENTS.md](/c:/Users/asus/OneDrive/Desktop/Boyeep-Template/AGENTS.md) as the primary repository guide. If these instructions and `AGENTS.md` ever diverge, follow `AGENTS.md`.
+Use [AGENTS.md](../AGENTS.md) as the primary repository guide. If these instructions and `AGENTS.md` ever diverge, follow `AGENTS.md`.
 
 ## Repository Overview
 
@@ -22,6 +22,9 @@ This is a reusable full-stack template with:
 Run from the repository root:
 
 - `npm run dev`
+- `npm run check:contract`
+- `npm run check:workflows`
+- `npm run check:secrets`
 - `npm run check`
 - `npm run e2e:install`
 - `npm run e2e`

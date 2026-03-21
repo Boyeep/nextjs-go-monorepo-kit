@@ -54,6 +54,9 @@ Backend: `http://localhost:8080`
 npm run dev
 npm run dev:down
 npm run api:types
+npm run check:contract
+npm run check:workflows
+npm run check:secrets
 npm run check
 npm run e2e:install
 npm run e2e
@@ -64,6 +67,7 @@ npm run e2e
 - `docs/openapi.yaml` is the source of truth for the HTTP contract exposed by the Go API.
 - `frontend/src/generated/openapi.ts` is generated from that spec with `openapi-typescript`.
 - Run `npm run api:types` after changing API routes, payloads, or response shapes so the frontend stays aligned with the backend.
+- Run `npm run check:contract` to ensure generated types are committed and in sync.
 
 ## Releases
 
@@ -81,6 +85,7 @@ npm run e2e
 - full-stack by default: frontend, backend, Dockerized PostgreSQL, and shared root scripts
 - safer defaults: in-memory auth tokens and stricter password-reset handling
 - stronger quality gates: strict ESLint, Prettier, Vitest utility and component tests, production build checks, Go test, and Go build
+- maintainer guardrails: contract drift checks, workflow lint, secret scan, CODEOWNERS, and Dependabot
 - end-to-end confidence: Playwright smoke tests that boot the full local stack
 - public-template ready: issue forms, PR template, release automation, contribution guide, security policy, and code of conduct
 
@@ -98,6 +103,9 @@ npm run e2e
 ## Notes
 
 - `npm run check` runs frontend lint, typecheck, build, plus backend tests and build.
+- `npm run check:contract` reruns OpenAPI type generation and fails if `frontend/src/generated/openapi.ts` drifted.
+- `npm run check:workflows` lints GitHub Actions workflows with `actionlint`.
+- `npm run check:secrets` scans tracked git content with `gitleaks`.
 - Run `npm run e2e:install` once on a new machine to install the Playwright browser.
 - `npm run e2e` starts PostgreSQL, the Go API, and the Next.js app before running Playwright smoke tests.
 - Sample resource fallbacks are disabled by default. Enable them only when you explicitly want demo content with `NEXT_PUBLIC_ENABLE_SAMPLE_FALLBACK=true`.
@@ -124,6 +132,7 @@ These files document the repo structure, verification commands, architecture con
 - [SOON.md](./SOON.md)
 - [template-playbook.md](./template-playbook.md)
 - [CONTRIBUTING.md](./CONTRIBUTING.md)
+- [.github/CODEOWNERS](./.github/CODEOWNERS)
 - [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
 - [LICENSE](./LICENSE)
 - [SECURITY.md](./SECURITY.md)

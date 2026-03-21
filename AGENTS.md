@@ -51,13 +51,20 @@ Run these from the repository root unless noted otherwise.
   Starts a disposable Postgres container, boots the Go API and production Next.js app, then runs Playwright smoke tests.
 - `npm run api:types`
   Regenerates `frontend/src/generated/openapi.ts` from `docs/openapi.yaml`. Run this after changing API routes, request bodies, or response shapes.
+- `npm run check:contract`
+  Regenerates `frontend/src/generated/openapi.ts` and fails if the committed file is out of date.
+- `npm run check:workflows`
+  Lints `.github/workflows/` with `actionlint` through Go.
+- `npm run check:secrets`
+  Scans tracked git content with `gitleaks` through Go.
 
 ## Definition Of Done
 
 For most code changes, aim to leave the repo passing:
 
 1. `npm run check`
-2. `npm run e2e` for changes that touch user-facing flows, routing, auth, startup, or integration behavior
+2. `npm run check:contract` for API contract changes
+3. `npm run e2e` for changes that touch user-facing flows, routing, auth, startup, or integration behavior
 
 If a task intentionally avoids one of those, explain why.
 
@@ -94,7 +101,7 @@ If a task intentionally avoids one of those, explain why.
 - OpenAPI types are generated, not hand-edited.
   - Source spec lives in `docs/openapi.yaml`.
   - Generated frontend contract lives in `frontend/src/generated/openapi.ts`.
-  - If backend request or response shapes change, update the spec and rerun `npm run api:types`.
+  - If backend request or response shapes change, update the spec, rerun `npm run api:types`, and verify with `npm run check:contract`.
 - Header navigation includes `/#about` and `/#contact`, so homepage edits should keep those anchors meaningful unless navigation is updated too.
 
 ## Backend Architecture
