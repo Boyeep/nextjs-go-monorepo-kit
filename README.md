@@ -122,6 +122,7 @@ These files document the repo structure, verification commands, architecture con
 ## Repository Standards
 
 - [SOON.md](./SOON.md)
+- [template-playbook.md](./template-playbook.md)
 - [CONTRIBUTING.md](./CONTRIBUTING.md)
 - [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
 - [LICENSE](./LICENSE)
