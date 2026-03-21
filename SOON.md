@@ -65,22 +65,32 @@ Likely approach:
 - Add a guide for replacing the sample resource domain
 - Document which files to edit first for branding, routing, and data-model changes
 
+### 6. Smooth out release-please PR checks and branch-protection friction
+
+Why:
+- Release PRs can get stuck showing required checks as `Expected` when they are created with the default `github.token`.
+- That makes the maintainer flow feel more brittle than it should for a template repo.
+
+Likely approach:
+- Prefer a real `RELEASE_PLEASE_TOKEN` so `Template CI` and `E2E` can run on release PRs normally
+- Or keep release PR merge requirements lighter than normal feature PRs if the repo stays solo-maintained
+
 ## Next Wave
 
-### 6. API client ergonomics on top of generated contracts
+### 7. API client ergonomics on top of generated contracts
 
 Possible additions:
 - typed request helpers derived from the OpenAPI contract
 - optional OpenAPI codegen for stronger request/response bindings
 - contract validation checks as part of CI if the repo grows in that direction
 
-### 7. Storybook and MSW as optional developer-experience modules
+### 8. Storybook and MSW as optional developer-experience modules
 
 Why:
 - Helpful once the UI system and API mocking needs get bigger
 - Better as opt-in expansions than as hard base-template dependencies
 
-### 8. Observability starter guidance
+### 9. Observability starter guidance
 
 Possible additions:
 - Sentry setup guide
