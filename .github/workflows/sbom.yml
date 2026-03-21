@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Generate repository source SBOM
         uses: anchore/sbom-action@v0.20.9
@@ -49,7 +49,7 @@ jobs:
             artifact: frontend-runner.spdx.json
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Build runner image
         run: >
