@@ -8,7 +8,7 @@ RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /nextjs-go-monorepo-kit-api ./cmd/api
 
-FROM alpine:3.21
+FROM alpine:3.21 AS runner
 
 RUN adduser -D -u 10001 appuser
 WORKDIR /app

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "frontend",
+    "color": "0e7490",
+    "description": "Changes focused on the Next.js app or client-side UX."
+  },
+  {
+    "name": "backend",
+    "color": "166534",
+    "description": "Changes focused on the Go API, services, or data layer."
+  },
+  {
+    "name": "api",
+    "color": "15803d",
+    "description": "OpenAPI contract, handlers, or request-response behavior."
+  },
+  {
+    "name": "auth",
+    "color": "7c3aed",
+    "description": "Authentication, sessions, or access-control changes."
+  },
+  {
+    "name": "database",
+    "color": "a16207",
+    "description": "Schema, migrations, or PostgreSQL-related changes."
+  },
+  {
+    "name": "e2e",
+    "color": "c2410c",
+    "description": "Browser smoke tests or full-stack verification changes."
+  },
+  {
+    "name": "ci",
+    "color": "4f46e5",
+    "description": "Continuous integration or workflow changes."
+  },
+  {
+    "name": "release",
+    "color": "6d28d9",
+    "description": "Release automation, publish flow, or changelog changes."
+  },
+  {
+    "name": "infra",
+    "color": "4338ca",
+    "description": "Tooling, scripts, Docker, or environment setup changes."
+  },
+  {
+    "name": "docs",
+    "color": "ca8a04",
+    "description": "Documentation-only changes."
+  },
+  {
+    "name": "chore",
+    "color": "6b7280",
+    "description": "Maintenance work with little or no product impact."
+  },
+  {
+    "name": "bug",
+    "color": "dc2626",
+    "description": "Something is broken or regressed."
+  },
+  {
+    "name": "enhancement",
+    "color": "2563eb",
+    "description": "A reusable starter improvement or requested capability."
+  },
+  {
+    "name": "patch",
+    "color": "1d4ed8",
+    "description": "Patch-level release intent."
+  },
+  {
+    "name": "minor",
+    "color": "2563eb",
+    "description": "Minor-level release intent."
+  },
+  {
+    "name": "major",
+    "color": "b91c1c",
+    "description": "Major-level release intent."
+  }
+]

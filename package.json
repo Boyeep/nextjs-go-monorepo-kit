@@ -7,6 +7,8 @@
     "dev:down": "docker compose down",
     "api:types": "openapi-typescript ./docs/openapi.yaml -o ./frontend/src/generated/openapi.ts",
     "check:contract": "node scripts/check-contract-drift.mjs",
+    "check:images": "node scripts/check-docker-builds.mjs",
+    "check:release-smoke": "node scripts/check-release-smoke.mjs",
     "check:workflows": "node scripts/check-actionlint.mjs",
     "check:secrets": "node scripts/check-secrets.mjs",
     "report:licenses": "node scripts/report-licenses.mjs",

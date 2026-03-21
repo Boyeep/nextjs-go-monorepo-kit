@@ -5,6 +5,7 @@ const workspaceRoot = path.resolve(process.cwd(), "..");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  output: "standalone",
   outputFileTracingRoot: workspaceRoot,
   turbopack: {
     root: workspaceRoot,

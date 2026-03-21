@@ -34,6 +34,7 @@ npm run check:contract
 If Go is available locally, you can also run:
 
 ```bash
+npm run check:images
 npm run check:workflows
 npm run check:secrets
 npm run report:licenses
@@ -67,3 +68,5 @@ Please avoid adding product-specific business logic that makes the starter less 
 ## Releases
 
 This repository includes a `release-please` workflow for automated release PRs and tags on `main`.
+
+After a release tag is created, the repo also publishes backend/frontend GHCR images, generates provenance attestations for those images, attaches source/runtime SBOM assets to the GitHub release, and runs release smoke tests against the published images.

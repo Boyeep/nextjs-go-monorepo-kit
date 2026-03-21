@@ -55,6 +55,8 @@ npm run dev
 npm run dev:down
 npm run api:types
 npm run check:contract
+npm run check:images
+npm run check:release-smoke
 npm run check:workflows
 npm run check:secrets
 npm run report:licenses
@@ -74,6 +76,10 @@ npm run e2e
 
 - `release-please` watches pushes to `main` and opens or updates a release PR.
 - Merge the release PR to create the Git tag and GitHub release.
+- Pushing the release tag also publishes backend and frontend runner images to GHCR.
+- The release workflow adds provenance attestations for those GHCR images.
+- The release workflow also attaches source and runtime SBOM assets to the GitHub release.
+- A release-smoke workflow validates the published images against a disposable Postgres container.
 - Release metadata is driven by:
   - `release-please-config.json`
   - `.release-please-manifest.json`
@@ -86,8 +92,9 @@ npm run e2e
 - full-stack by default: frontend, backend, Dockerized PostgreSQL, and shared root scripts
 - safer defaults: in-memory auth tokens and stricter password-reset handling
 - stronger quality gates: strict ESLint, Prettier, Vitest utility and component tests, production build checks, Go test, and Go build
-- maintainer guardrails: contract drift checks, workflow lint, secret scan, CODEOWNERS, and Dependabot
+- maintainer guardrails: contract drift checks, workflow lint, secret scan, CODEOWNERS, synced labels, and Dependabot
 - security visibility: CodeQL plus downloadable dependency license reports
+- packaging confidence: Docker image build checks, published GHCR images, provenance attestations, SBOMs, and release smoke tests
 - end-to-end confidence: Playwright smoke tests that boot the full local stack
 - public-template ready: issue forms, PR template, release automation, contribution guide, security policy, and code of conduct
 
@@ -106,9 +113,11 @@ npm run e2e
 
 - `npm run check` runs frontend lint, typecheck, build, plus backend tests and build.
 - `npm run check:contract` reruns OpenAPI type generation and fails if `frontend/src/generated/openapi.ts` drifted.
+- `npm run check:images` builds backend and frontend runner images locally when Docker is available.
 - `npm run check:workflows` lints GitHub Actions workflows with `actionlint`.
 - `npm run check:secrets` scans tracked git content with `gitleaks`.
 - `npm run report:licenses` writes npm and Go dependency license reports to `reports/licenses/`.
+- `npm run check:release-smoke` validates published backend/frontend images when `BACKEND_IMAGE` and `FRONTEND_IMAGE` are set.
 - Run `npm run e2e:install` once on a new machine to install the Playwright browser.
 - `npm run e2e` starts PostgreSQL, the Go API, and the Next.js app before running Playwright smoke tests.
 - Sample resource fallbacks are disabled by default. Enable them only when you explicitly want demo content with `NEXT_PUBLIC_ENABLE_SAMPLE_FALLBACK=true`.
@@ -118,6 +127,8 @@ npm run e2e
 
 - CodeQL scans JavaScript/TypeScript, Go, and GitHub Actions code on GitHub.
 - A dedicated license-report workflow uploads dependency license inventories for the root workspace, frontend workspace, and backend Go module.
+- An SBOM workflow publishes SPDX artifacts for the repository source plus the backend and frontend runner images.
+- Release tags also publish attested GHCR images and attach source/image SBOMs to the GitHub release.
 
 ## AI-Ready Guidance
 
@@ -141,6 +152,7 @@ These files document the repo structure, verification commands, architecture con
 - [template-playbook.md](./template-playbook.md)
 - [CONTRIBUTING.md](./CONTRIBUTING.md)
 - [.github/CODEOWNERS](./.github/CODEOWNERS)
+- [.github/labels.json](./.github/labels.json)
 - [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
 - [LICENSE](./LICENSE)
 - [SECURITY.md](./SECURITY.md)

@@ -134,3 +134,18 @@ jobs:
 
       - name: Build
         run: go build ./...
+
+  docker-images:
+    name: Docker Images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Verify Docker image builds
+        run: npm run check:images

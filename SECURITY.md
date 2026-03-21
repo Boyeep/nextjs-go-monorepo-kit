@@ -32,3 +32,5 @@ This template also ships with:
 - CodeQL scanning for JavaScript/TypeScript, Go, and GitHub Actions workflows
 - tracked-git secret scanning with `gitleaks`
 - downloadable license-report artifacts for npm and Go dependencies
+- SPDX SBOM artifacts for the repository source plus backend/frontend runner images
+- release-time provenance attestations for published GHCR images

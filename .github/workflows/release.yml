@@ -1,0 +1,192 @@
+name: Release Artifacts
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to publish, for example v1.2.3"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  publish-images:
+    name: Publish GHCR Images
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+    outputs:
+      backend-attestation-url: ${{ steps.attest-backend.outputs.attestation-url }}
+      frontend-attestation-url: ${{ steps.attest-frontend.outputs.attestation-url }}
+      backend-digest: ${{ steps.push-backend.outputs.digest }}
+      frontend-digest: ${{ steps.push-frontend.outputs.digest }}
+    steps:
+      - name: Resolve tag and owner
+        id: vars
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "tag=${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          fi
+          echo "owner=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout repository at tag
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ steps.vars.outputs.tag }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish backend image
+        id: push-backend
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          file: ./backend/Dockerfile
+          target: runner
+          push: true
+          tags: ghcr.io/${{ steps.vars.outputs.owner }}/nextjs-go-monorepo-kit-backend:${{ steps.vars.outputs.tag }}
+
+      - name: Generate backend provenance attestation
+        id: attest-backend
+        uses: actions/attest@v4
+        with:
+          subject-name: ghcr.io/${{ steps.vars.outputs.owner }}/nextjs-go-monorepo-kit-backend
+          subject-digest: ${{ steps.push-backend.outputs.digest }}
+          push-to-registry: true
+
+      - name: Publish frontend image
+        id: push-frontend
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          target: runner
+          push: true
+          tags: ghcr.io/${{ steps.vars.outputs.owner }}/nextjs-go-monorepo-kit-frontend:${{ steps.vars.outputs.tag }}
+
+      - name: Generate frontend provenance attestation
+        id: attest-frontend
+        uses: actions/attest@v4
+        with:
+          subject-name: ghcr.io/${{ steps.vars.outputs.owner }}/nextjs-go-monorepo-kit-frontend
+          subject-digest: ${{ steps.push-frontend.outputs.digest }}
+          push-to-registry: true
+
+  github-release:
+    name: Attach Release Assets
+    needs: publish-images
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: read
+    steps:
+      - name: Resolve tag and owner
+        id: vars
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "tag=${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          fi
+          echo "owner=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout repository at tag
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ steps.vars.outputs.tag }}
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Prepare release asset directory
+        shell: bash
+        run: mkdir -p dist/release-assets
+
+      - name: Generate source SBOM asset
+        uses: anchore/sbom-action@v0.20.9
+        with:
+          path: .
+          format: spdx-json
+          syft-version: v1.41.2
+          output-file: dist/release-assets/repo-source-${{ steps.vars.outputs.tag }}.spdx.json
+          upload-artifact: false
+          upload-release-assets: false
+
+      - name: Generate backend image SBOM asset
+        uses: anchore/sbom-action@v0.20.9
+        with:
+          image: ghcr.io/${{ steps.vars.outputs.owner }}/nextjs-go-monorepo-kit-backend@${{ needs.publish-images.outputs.backend-digest }}
+          format: spdx-json
+          syft-version: v1.41.2
+          output-file: dist/release-assets/backend-runner-${{ steps.vars.outputs.tag }}.spdx.json
+          upload-artifact: false
+          upload-release-assets: false
+
+      - name: Generate frontend image SBOM asset
+        uses: anchore/sbom-action@v0.20.9
+        with:
+          image: ghcr.io/${{ steps.vars.outputs.owner }}/nextjs-go-monorepo-kit-frontend@${{ needs.publish-images.outputs.frontend-digest }}
+          format: spdx-json
+          syft-version: v1.41.2
+          output-file: dist/release-assets/frontend-runner-${{ steps.vars.outputs.tag }}.spdx.json
+          upload-artifact: false
+          upload-release-assets: false
+
+      - name: Attach release assets and verification notes
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.vars.outputs.tag }}
+          append_body: true
+          files: |
+            dist/release-assets/repo-source-${{ steps.vars.outputs.tag }}.spdx.json
+            dist/release-assets/backend-runner-${{ steps.vars.outputs.tag }}.spdx.json
+            dist/release-assets/frontend-runner-${{ steps.vars.outputs.tag }}.spdx.json
+          body: |
+            ## Published Images
+
+            - `ghcr.io/${{ steps.vars.outputs.owner }}/nextjs-go-monorepo-kit-backend:${{ steps.vars.outputs.tag }}`
+            - `ghcr.io/${{ steps.vars.outputs.owner }}/nextjs-go-monorepo-kit-frontend:${{ steps.vars.outputs.tag }}`
+
+            ## Provenance Attestations
+
+            - Backend image: ${{ needs.publish-images.outputs.backend-attestation-url }}
+            - Frontend image: ${{ needs.publish-images.outputs.frontend-attestation-url }}
+
+            ## Attached SBOM Assets
+
+            - `repo-source-${{ steps.vars.outputs.tag }}.spdx.json`
+            - `backend-runner-${{ steps.vars.outputs.tag }}.spdx.json`
+            - `frontend-runner-${{ steps.vars.outputs.tag }}.spdx.json`
+
+            ## Verification
+
+            ```bash
+            docker login ghcr.io
+            gh attestation verify oci://ghcr.io/${{ steps.vars.outputs.owner }}/nextjs-go-monorepo-kit-backend:${{ steps.vars.outputs.tag }} -R ${{ github.repository }}
+            gh attestation verify oci://ghcr.io/${{ steps.vars.outputs.owner }}/nextjs-go-monorepo-kit-frontend:${{ steps.vars.outputs.tag }} -R ${{ github.repository }}
+            ```

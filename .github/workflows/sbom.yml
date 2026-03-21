@@ -1,0 +1,69 @@
+name: SBOM
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "24 3 * * 3"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-sbom:
+    name: Source SBOM
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Generate repository source SBOM
+        uses: anchore/sbom-action@v0.20.9
+        with:
+          path: .
+          format: spdx-json
+          artifact-name: repo-source.spdx.json
+          syft-version: v1.41.2
+          upload-release-assets: false
+
+  image-sbom:
+    name: Image SBOM (${{ matrix.name }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: backend
+            context: ./backend
+            dockerfile: ./backend/Dockerfile
+            target: runner
+            image: nextjs-go-monorepo-kit-backend:sbom
+            artifact: backend-runner.spdx.json
+          - name: frontend
+            context: ./frontend
+            dockerfile: ./frontend/Dockerfile
+            target: runner
+            image: nextjs-go-monorepo-kit-frontend:sbom
+            artifact: frontend-runner.spdx.json
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Build runner image
+        run: >
+          docker build
+          --file ${{ matrix.dockerfile }}
+          --target ${{ matrix.target }}
+          --tag ${{ matrix.image }}
+          ${{ matrix.context }}
+
+      - name: Generate image SBOM
+        uses: anchore/sbom-action@v0.20.9
+        with:
+          image: ${{ matrix.image }}
+          format: spdx-json
+          artifact-name: ${{ matrix.artifact }}
+          syft-version: v1.41.2
+          upload-release-assets: false
