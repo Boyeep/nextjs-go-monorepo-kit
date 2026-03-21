@@ -24,3 +24,11 @@ Reports are most helpful when they focus on:
 - environment-variable defaults
 - database and migration safety
 - dependency risks in the frontend or backend
+
+## Built-In Scanning
+
+This template also ships with:
+
+- CodeQL scanning for JavaScript/TypeScript, Go, and GitHub Actions workflows
+- tracked-git secret scanning with `gitleaks`
+- downloadable license-report artifacts for npm and Go dependencies

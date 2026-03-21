@@ -36,6 +36,7 @@ If Go is available locally, you can also run:
 ```bash
 npm run check:workflows
 npm run check:secrets
+npm run report:licenses
 ```
 
 ## Commit Style

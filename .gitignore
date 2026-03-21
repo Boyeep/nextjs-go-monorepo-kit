@@ -25,6 +25,7 @@ backend/.env.*
 
 # Generated project files
 frontend/tsconfig.typecheck.tsbuildinfo
+reports/licenses/
 
 # Logs
 *.log

@@ -57,6 +57,7 @@ npm run api:types
 npm run check:contract
 npm run check:workflows
 npm run check:secrets
+npm run report:licenses
 npm run check
 npm run e2e:install
 npm run e2e
@@ -86,6 +87,7 @@ npm run e2e
 - safer defaults: in-memory auth tokens and stricter password-reset handling
 - stronger quality gates: strict ESLint, Prettier, Vitest utility and component tests, production build checks, Go test, and Go build
 - maintainer guardrails: contract drift checks, workflow lint, secret scan, CODEOWNERS, and Dependabot
+- security visibility: CodeQL plus downloadable dependency license reports
 - end-to-end confidence: Playwright smoke tests that boot the full local stack
 - public-template ready: issue forms, PR template, release automation, contribution guide, security policy, and code of conduct
 
@@ -106,10 +108,16 @@ npm run e2e
 - `npm run check:contract` reruns OpenAPI type generation and fails if `frontend/src/generated/openapi.ts` drifted.
 - `npm run check:workflows` lints GitHub Actions workflows with `actionlint`.
 - `npm run check:secrets` scans tracked git content with `gitleaks`.
+- `npm run report:licenses` writes npm and Go dependency license reports to `reports/licenses/`.
 - Run `npm run e2e:install` once on a new machine to install the Playwright browser.
 - `npm run e2e` starts PostgreSQL, the Go API, and the Next.js app before running Playwright smoke tests.
 - Sample resource fallbacks are disabled by default. Enable them only when you explicitly want demo content with `NEXT_PUBLIC_ENABLE_SAMPLE_FALLBACK=true`.
 - Frontend auth tokens are stored in memory instead of persistent browser storage.
+
+## Security Automation
+
+- CodeQL scans JavaScript/TypeScript, Go, and GitHub Actions code on GitHub.
+- A dedicated license-report workflow uploads dependency license inventories for the root workspace, frontend workspace, and backend Go module.
 
 ## AI-Ready Guidance
 

@@ -9,6 +9,7 @@
     "check:contract": "node scripts/check-contract-drift.mjs",
     "check:workflows": "node scripts/check-actionlint.mjs",
     "check:secrets": "node scripts/check-secrets.mjs",
+    "report:licenses": "node scripts/report-licenses.mjs",
     "check": "node scripts/check.mjs",
     "e2e": "node scripts/e2e.mjs",
     "e2e:install": "npm --prefix frontend exec playwright install chromium"
