@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.1](https://github.com/Boyeep/nextjs-go-monorepo-kit/compare/v1.2.0...v1.2.1) (2026-03-25)
+
+
+### Bug Fixes
+
+* **frontend:** align auth polish and add ui ux notes ([32d0dd8](https://github.com/Boyeep/nextjs-go-monorepo-kit/commit/32d0dd8d17e473e00bca6bccea868e72eeb3868d))
+* **frontend:** refine auth card spacing ([a1cdeb4](https://github.com/Boyeep/nextjs-go-monorepo-kit/commit/a1cdeb4906afb0d21f575564a2603b5198227019))
+* **frontend:** stabilize frontend ci checks ([2939b24](https://github.com/Boyeep/nextjs-go-monorepo-kit/commit/2939b2426caed9d81ee5cf63b9cc22b58594dee8))
+
 ## [1.2.0](https://github.com/Boyeep/nextjs-go-monorepo-kit/compare/v1.1.1...v1.2.0) (2026-03-25)
 
 

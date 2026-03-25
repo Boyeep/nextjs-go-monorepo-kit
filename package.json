@@ -1,7 +1,7 @@
 {
   "name": "nextjs-go-monorepo-kit",
   "private": true,
-  "version": "1.2.0",
+  "version": "1.2.1",
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "dev:down": "docker compose down",
