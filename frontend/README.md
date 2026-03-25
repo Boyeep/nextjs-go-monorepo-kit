@@ -83,6 +83,11 @@ The template now includes:
 - Playwright for browser-level smoke tests
 - GitHub Actions CI for lint, format, typecheck, test, and build
 
+## Design Notes
+
+Shared motion, hover, background, and UI polish guidance lives in
+[`../docs/ui-ux-guidelines.md`](../docs/ui-ux-guidelines.md).
+
 ## Sitemap
 
 `next-sitemap` runs after production builds and generates sitemap metadata based on

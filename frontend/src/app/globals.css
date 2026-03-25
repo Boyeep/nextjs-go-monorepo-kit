@@ -241,7 +241,10 @@
     --animated-underline-dots-height: 4px;
     --animated-underline-offset: -0.22em;
     --animated-underline-active-shift: calc(
-      (var(--animated-underline-dots-height) - var(--animated-underline-active-height)) /
+      (
+          var(--animated-underline-dots-height) -
+            var(--animated-underline-active-height)
+        ) /
         2
     );
     position: relative;

@@ -184,10 +184,7 @@ export function AuthFormShell({
             </div>
           ) : null}
           <form
-            className={cn(
-              "grid text-left",
-              isSignup ? "gap-3.5" : "gap-4",
-            )}
+            className={cn("grid text-left", isSignup ? "gap-3.5" : "gap-4")}
             onSubmit={handleSubmit}
           >
             {fields.map((field) => (
