@@ -65,10 +65,10 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               aria-current={activeHref === item.href ? "page" : undefined}
+              data-active={activeHref === item.href}
               className={cn(
-                "rounded-full px-4 py-2.5 text-sm font-medium text-[var(--muted-text)] transition-colors hover:bg-[rgba(31,111,120,0.08)] hover:text-[var(--text)]",
-                activeHref === item.href &&
-                  "bg-[rgba(31,111,120,0.1)] text-[var(--text)]",
+                "header-nav-link text-sm font-medium",
+                activeHref === item.href && "font-semibold",
               )}
             >
               {item.label}

@@ -12,6 +12,7 @@ import {
   Search,
   Sparkles,
 } from "lucide-react";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -37,6 +38,7 @@ import { StatCard } from "@/components/ui/stat-card";
 import { Textarea } from "@/components/ui/textarea";
 
 type SandboxSectionProps = {
+  delayMs?: number;
   title: string;
   children: React.ReactNode;
 };
@@ -47,16 +49,20 @@ type PreviewPanelProps = {
   className?: string;
 };
 
-function SandboxSection({ title, children }: SandboxSectionProps) {
+function SandboxSection({ title, children, delayMs = 0 }: SandboxSectionProps) {
   return (
-    <section className="grid gap-4 border-t border-[rgba(31,41,55,0.08)] py-8 first:border-t-0 first:pt-0">
+    <ScrollReveal
+      as="section"
+      className="grid gap-4 border-t border-[rgba(31,41,55,0.08)] py-8 first:border-t-0 first:pt-0"
+      delayMs={delayMs}
+    >
       <div className="flex items-center justify-between gap-3">
         <h2 className="m-0 font-[family-name:var(--font-display)] text-[1.9rem] tracking-[-0.04em] text-[var(--text)]">
           {title}
         </h2>
       </div>
       {children}
-    </section>
+    </ScrollReveal>
   );
 }
 
@@ -75,9 +81,9 @@ function PreviewPanel({ title, children, className }: PreviewPanelProps) {
 
 export function SandboxPage() {
   return (
-    <main className="relative overflow-x-hidden px-0 pt-6 pb-16">
+    <main className="relative overflow-x-hidden px-0 pt-[clamp(3.5rem,8vw,5.5rem)] pb-16">
       <div className="mx-auto grid w-[min(1040px,calc(100%-2rem))] gap-10 max-[720px]:w-[min(var(--max-width),calc(100%-1.25rem))]">
-        <header className="grid gap-5">
+        <ScrollReveal as="header" className="grid gap-5" distancePx={20}>
           <div className="flex flex-wrap items-center gap-3">
             <Badge variant="outline">Sandbox</Badge>
             <Badge className="bg-[var(--accent-brand)] text-white shadow-sm hover:bg-[var(--accent-brand)]">
@@ -103,9 +109,9 @@ export function SandboxPage() {
               <Link href="/templates/demo-resource">Sample template page</Link>
             </Button>
           </div>
-        </header>
+        </ScrollReveal>
 
-        <SandboxSection title="Buttons">
+        <SandboxSection title="Buttons" delayMs={40}>
           <div className="grid gap-4 lg:grid-cols-2">
             <PreviewPanel title="Variants">
               <div className="flex flex-wrap gap-3">
@@ -150,7 +156,7 @@ export function SandboxPage() {
           </div>
         </SandboxSection>
 
-        <SandboxSection title="Badges">
+        <SandboxSection title="Badges" delayMs={70}>
           <div className="grid gap-4 lg:grid-cols-2">
             <PreviewPanel title="Badge variants">
               <div className="flex flex-wrap gap-3">
@@ -170,7 +176,7 @@ export function SandboxPage() {
           </div>
         </SandboxSection>
 
-        <SandboxSection title="Typography">
+        <SandboxSection title="Typography" delayMs={100}>
           <PreviewPanel title="Type scale">
             <div className="grid gap-3">
               <h1 className="m-0 font-[family-name:var(--font-display)] text-[clamp(2.8rem,5vw,4.3rem)] leading-[0.93] tracking-[-0.06em] text-[var(--text)]">
@@ -189,7 +195,7 @@ export function SandboxPage() {
           </PreviewPanel>
         </SandboxSection>
 
-        <SandboxSection title="Forms">
+        <SandboxSection title="Forms" delayMs={130}>
           <div className="grid gap-4 lg:grid-cols-2">
             <PreviewPanel title="Inputs">
               <div className="grid gap-2">
@@ -232,7 +238,7 @@ export function SandboxPage() {
           </div>
         </SandboxSection>
 
-        <SandboxSection title="Cards">
+        <SandboxSection title="Cards" delayMs={160}>
           <div className="grid gap-4 lg:grid-cols-2">
             <Card>
               <CardHeader>
@@ -274,7 +280,7 @@ export function SandboxPage() {
           </div>
         </SandboxSection>
 
-        <SandboxSection title="Useful Extras">
+        <SandboxSection title="Useful Extras" delayMs={190}>
           <div className="grid gap-4 lg:grid-cols-2">
             <PreviewPanel title="StatCard">
               <div className="grid gap-3 sm:grid-cols-2">
@@ -310,7 +316,7 @@ export function SandboxPage() {
           </div>
         </SandboxSection>
 
-        <SandboxSection title="Overlays">
+        <SandboxSection title="Overlays" delayMs={220}>
           <div className="grid gap-4 lg:grid-cols-2">
             <PreviewPanel title="Sheet">
               <div className="flex flex-wrap gap-3">

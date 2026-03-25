@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { RouteContentFrame } from "@/components/route-content-frame";
 import { Providers } from "@/components/providers";
 import { RouteScrollReset } from "@/components/route-scroll-reset";
 import { SiteHeader } from "@/components/site-header";
@@ -19,7 +20,7 @@ export function RootShell({ children }: RootShellProps) {
           Skip to content
         </a>
         <SiteHeader />
-        <div id="main-content">{children}</div>
+        <RouteContentFrame>{children}</RouteContentFrame>
       </div>
     </Providers>
   );

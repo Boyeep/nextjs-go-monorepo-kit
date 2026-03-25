@@ -66,6 +66,7 @@ export function AuthFormShell({
   const setSession = useAuthStore((state) => state.setSession);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const isSignup = mode === "signup";
 
   const mutation = useMutation({
     mutationFn: async (formData: FormData) => {
@@ -96,6 +97,8 @@ export function AuthFormShell({
       });
     },
     onSuccess: async (result) => {
+      setErrorMessage("");
+
       if (mode === "forgot-password") {
         setSuccessMessage(
           "If your email is registered, a reset link will be sent there.",
@@ -128,16 +131,20 @@ export function AuthFormShell({
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setErrorMessage("");
     setSuccessMessage("");
 
     mutation.mutate(new FormData(event.currentTarget));
   }
 
+  const isLoginSignupFooterLink =
+    mode === "login" && footerLinkHref === "/signup";
   const footerLinkTone =
     footerLinkHref === "/signup"
-      ? "text-[var(--brand-deep)] hover:text-[var(--brand)]"
+      ? "text-[var(--brand-deep)] hover:text-[var(--brand-deep)]"
       : "text-[var(--accent-brand)] hover:text-[var(--text)]";
+  const footerLinkEffect = isLoginSignupFooterLink
+    ? "animated-underline-link--relaxed"
+    : "";
 
   return (
     <AuthSplitShell
@@ -145,8 +152,20 @@ export function AuthFormShell({
       heading="Reusable account flows, ready to adapt."
       description="A calmer auth surface with reusable structure, clear states, and backend-ready patterns you can reshape for your own product."
     >
-      <Card className="rounded-[32px] border border-white/70 bg-white/85 p-[clamp(1.5rem,4vw,2rem)] shadow-[var(--shadow)]">
-        <CardHeader className="mb-6 grid gap-2 p-0 text-left">
+      <Card
+        className={cn(
+          "rounded-[32px] border border-white/70 bg-white/85 shadow-[var(--shadow)]",
+          isSignup
+            ? "p-[clamp(1.35rem,3.4vw,1.75rem)]"
+            : "p-[clamp(1.5rem,4vw,2rem)]",
+        )}
+      >
+        <CardHeader
+          className={cn(
+            "grid p-0 text-left",
+            isSignup ? "mb-5 gap-1.5" : "mb-6 gap-2",
+          )}
+        >
           <CardTitle>{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardHeader>
@@ -164,9 +183,18 @@ export function AuthFormShell({
               </p>
             </div>
           ) : null}
-          <form className="grid gap-4 text-left" onSubmit={handleSubmit}>
+          <form
+            className={cn(
+              "grid text-left",
+              isSignup ? "gap-3.5" : "gap-4",
+            )}
+            onSubmit={handleSubmit}
+          >
             {fields.map((field) => (
-              <div key={field.id} className="grid gap-2">
+              <div
+                key={field.id}
+                className={cn("grid", isSignup ? "gap-1.5" : "gap-2")}
+              >
                 <Label htmlFor={field.id}>{field.label}</Label>
                 <Input
                   id={field.id}
@@ -177,12 +205,22 @@ export function AuthFormShell({
               </div>
             ))}
             {errorMessage ? (
-              <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              <p
+                className={cn(
+                  "rounded-2xl border border-red-200 bg-red-50 px-4 text-red-700",
+                  isSignup ? "py-2.5 text-[0.95rem]" : "py-3 text-sm",
+                )}
+              >
                 {errorMessage}
               </p>
             ) : null}
             {successMessage ? (
-              <p className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+              <p
+                className={cn(
+                  "rounded-2xl border border-emerald-200 bg-emerald-50 px-4 text-emerald-700",
+                  isSignup ? "py-2.5 text-[0.95rem]" : "py-3 text-sm",
+                )}
+              >
                 {successMessage}
               </p>
             ) : null}
@@ -194,20 +232,29 @@ export function AuthFormShell({
               {secondaryLink ? (
                 <Link
                   href={secondaryLink.href}
-                  className="font-bold text-[var(--accent-brand)]"
+                  className="soft-glow-link font-bold text-[var(--accent-brand)]"
                 >
                   {secondaryLink.label}
                 </Link>
               ) : null}
             </div>
           </form>
-          <p className="mt-5 flex flex-wrap items-center gap-2 text-[var(--muted-text)]">
+          <p
+            className={cn(
+              "flex flex-wrap items-center gap-2 text-[var(--muted-text)]",
+              isSignup ? "mt-4" : "mt-5",
+            )}
+          >
             <span>{footerText}</span>
             <Link
               href={footerLinkHref}
               className={cn(
-                "animated-underline-link text-sm font-semibold transition-colors",
+                "animated-underline-link text-sm transition-colors",
+                isLoginSignupFooterLink
+                  ? "font-extrabold tracking-[-0.01em]"
+                  : "font-bold",
                 footerLinkTone,
+                footerLinkEffect,
               )}
             >
               {footerLinkLabel}

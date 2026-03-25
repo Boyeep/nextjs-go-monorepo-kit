@@ -58,6 +58,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.variable} ${spaceGrotesk.variable}`}>
+        <noscript>
+          <style>{`
+            .scroll-reveal,
+            .scroll-reveal.is-hidden,
+            .scroll-reveal.is-visible {
+              opacity: 1 !important;
+              filter: none !important;
+              transform: none !important;
+              animation: none !important;
+            }
+          `}</style>
+        </noscript>
         <RootShell>{children}</RootShell>
         <PlausibleAnalytics />
         <VercelAnalytics />

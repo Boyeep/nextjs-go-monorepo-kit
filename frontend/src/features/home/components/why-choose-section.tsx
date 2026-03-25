@@ -1,4 +1,5 @@
 import { Blocks, DatabaseZap, ShieldCheck } from "lucide-react";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 const quickFacts = [
   "Next.js + Go foundation",
@@ -32,7 +33,11 @@ export function WhyChooseSection() {
   return (
     <section className="relative px-0 pt-8 pb-4 max-[720px]:pt-6">
       <div className="mx-auto grid w-[min(1040px,calc(100%-2rem))] gap-4 max-[720px]:w-[min(var(--max-width),calc(100%-1.25rem))]">
-        <div className="flex flex-wrap items-center justify-center gap-3 pb-2">
+        <ScrollReveal
+          as="div"
+          className="flex flex-wrap items-center justify-center gap-3 pb-2"
+          distancePx={22}
+        >
           {quickFacts.map((fact) => (
             <span
               key={fact}
@@ -41,13 +46,15 @@ export function WhyChooseSection() {
               {fact}
             </span>
           ))}
-        </div>
+        </ScrollReveal>
 
         <div className="grid gap-4 md:grid-cols-3">
-          {starterHighlights.map(({ title, description, Icon }) => (
-            <article
+          {starterHighlights.map(({ title, description, Icon }, index) => (
+            <ScrollReveal
               key={title}
+              as="article"
               className="grid gap-3 rounded-[28px] border border-white/80 bg-white/76 p-5 text-left shadow-[0_20px_44px_rgba(31,41,55,0.08)] backdrop-blur-[16px]"
+              delayMs={90 + index * 80}
             >
               <div className="flex h-11 w-11 items-center justify-center rounded-[16px] bg-[rgba(31,111,120,0.09)] text-[var(--accent-brand)]">
                 <Icon className="h-5 w-5" />
@@ -60,7 +67,7 @@ export function WhyChooseSection() {
                   {description}
                 </p>
               </div>
-            </article>
+            </ScrollReveal>
           ))}
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { featuredTemplates } from "@/lib/site-data";
 
 const landingHighlights = [
@@ -24,7 +25,10 @@ export function AboutSection() {
   return (
     <section className="relative px-0 pt-2 pb-4" id="about">
       <div className="mx-auto grid w-[min(1040px,calc(100%-2rem))] gap-6 max-[720px]:w-[min(var(--max-width),calc(100%-1.25rem))] md:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)]">
-        <div className="grid gap-5 rounded-[34px] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,243,235,0.9))] p-[clamp(1.7rem,4vw,3rem)] shadow-[var(--shadow)]">
+        <ScrollReveal
+          as="div"
+          className="grid gap-5 rounded-[34px] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,243,235,0.9))] p-[clamp(1.7rem,4vw,3rem)] shadow-[var(--shadow)]"
+        >
           <span className="text-sm font-bold tracking-[0.18em] text-[var(--brand-deep)] uppercase">
             Why it lands well
           </span>
@@ -67,13 +71,15 @@ export function AboutSection() {
               ),
             )}
           </div>
-        </div>
+        </ScrollReveal>
 
         <div className="grid gap-4">
           {featuredCards.map((template, index) => (
-            <article
+            <ScrollReveal
               key={template.title}
+              as="article"
               className="rounded-[28px] border border-white/80 bg-white/78 p-5 shadow-[0_20px_44px_rgba(31,41,55,0.08)] backdrop-blur-[14px]"
+              delayMs={90 + index * 90}
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="grid gap-2">
@@ -91,7 +97,7 @@ export function AboutSection() {
                   0{index + 1}
                 </span>
               </div>
-            </article>
+            </ScrollReveal>
           ))}
         </div>
       </div>

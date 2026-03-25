@@ -1,4 +1,5 @@
 import { BarChart3, Eye, LockKeyhole, UserRound } from "lucide-react";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import {
   Card,
   CardContent,
@@ -53,7 +54,11 @@ export function DashboardPreviewView({
         primaryLabel="Open auth demo"
       />
 
-      <section className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
+      <ScrollReveal
+        as="section"
+        className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4"
+        delayMs={70}
+      >
         <Card>
           <CardHeader className="text-left">
             <CardDescription>Preview User</CardDescription>
@@ -81,9 +86,13 @@ export function DashboardPreviewView({
             </CardTitle>
           </CardHeader>
         </Card>
-      </section>
+      </ScrollReveal>
 
-      <section className="grid gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,1fr)]">
+      <ScrollReveal
+        as="section"
+        className="grid gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,1fr)]"
+        delayMs={140}
+      >
         <Card>
           <CardHeader>
             <CardTitle>Session Overview</CardTitle>
@@ -159,7 +168,7 @@ export function DashboardPreviewView({
             </div>
           </CardContent>
         </Card>
-      </section>
+      </ScrollReveal>
     </DashboardShell>
   );
 }

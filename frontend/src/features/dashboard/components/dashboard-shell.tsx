@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -43,7 +44,11 @@ export function DashboardHero({
   title,
 }: DashboardHeroProps) {
   return (
-    <section className="rounded-[36px] bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.16),transparent_28%),linear-gradient(135deg,rgba(16,52,67,0.94),rgba(31,111,120,0.84))] p-[clamp(1.75rem,4vw,3rem)] text-white shadow-[var(--shadow)]">
+    <ScrollReveal
+      as="section"
+      className="rounded-[36px] bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.16),transparent_28%),linear-gradient(135deg,rgba(16,52,67,0.94),rgba(31,111,120,0.84))] p-[clamp(1.75rem,4vw,3rem)] text-white shadow-[var(--shadow)]"
+      distancePx={24}
+    >
       <div className="grid gap-4">
         <Badge className="w-fit rounded-full bg-white/15 px-3 py-1 text-white hover:bg-white/15">
           {badge}
@@ -63,6 +68,6 @@ export function DashboardHero({
           </Button>
         </div>
       </div>
-    </section>
+    </ScrollReveal>
   );
 }

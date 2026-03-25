@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { Template } from "@/types/template";
@@ -10,7 +11,11 @@ type TemplateHeroProps = {
 
 export function TemplateHero({ template }: TemplateHeroProps) {
   return (
-    <section className="relative mx-auto w-[min(var(--max-width),calc(100%-2rem))] overflow-hidden rounded-[32px] bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.14),transparent_28%),linear-gradient(135deg,rgba(16,52,67,0.88),rgba(31,111,120,0.82))] px-[clamp(2rem,4vw,3.5rem)] py-[clamp(2rem,4vw,3.5rem)] text-white before:absolute before:right-[-15%] before:bottom-[-35%] before:aspect-square before:w-[280px] before:rounded-full before:bg-white/10 before:content-[''] max-[720px]:w-[min(var(--max-width),calc(100%-1.25rem))]">
+    <ScrollReveal
+      as="section"
+      className="relative mx-auto w-[min(var(--max-width),calc(100%-2rem))] overflow-hidden rounded-[32px] bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.14),transparent_28%),linear-gradient(135deg,rgba(16,52,67,0.88),rgba(31,111,120,0.82))] px-[clamp(2rem,4vw,3.5rem)] py-[clamp(2rem,4vw,3.5rem)] text-white before:absolute before:right-[-15%] before:bottom-[-35%] before:aspect-square before:w-[280px] before:rounded-full before:bg-white/10 before:content-[''] max-[720px]:w-[min(var(--max-width),calc(100%-1.25rem))]"
+      distancePx={24}
+    >
       <div className="relative z-[1] grid max-w-[720px] gap-4">
         <div className="flex flex-wrap items-center gap-3">
           <Badge className="bg-white/15 text-white hover:bg-white/15">
@@ -42,6 +47,6 @@ export function TemplateHero({ template }: TemplateHeroProps) {
           </Button>
         </div>
       </div>
-    </section>
+    </ScrollReveal>
   );
 }
