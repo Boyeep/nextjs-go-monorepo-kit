@@ -128,7 +128,7 @@ jobs:
         run: mkdir -p dist/release-assets
 
       - name: Generate source SBOM asset
-        uses: anchore/sbom-action@v0.20.9
+        uses: anchore/sbom-action@v0.24.0
         with:
           path: .
           format: spdx-json
@@ -138,7 +138,7 @@ jobs:
           upload-release-assets: false
 
       - name: Generate backend image SBOM asset
-        uses: anchore/sbom-action@v0.20.9
+        uses: anchore/sbom-action@v0.24.0
         with:
           image: ghcr.io/${{ steps.vars.outputs.owner }}/nextjs-go-monorepo-kit-backend@${{ needs.publish-images.outputs.backend-digest }}
           format: spdx-json
@@ -148,7 +148,7 @@ jobs:
           upload-release-assets: false
 
       - name: Generate frontend image SBOM asset
-        uses: anchore/sbom-action@v0.20.9
+        uses: anchore/sbom-action@v0.24.0
         with:
           image: ghcr.io/${{ steps.vars.outputs.owner }}/nextjs-go-monorepo-kit-frontend@${{ needs.publish-images.outputs.frontend-digest }}
           format: spdx-json

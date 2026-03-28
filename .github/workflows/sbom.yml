@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Generate repository source SBOM
-        uses: anchore/sbom-action@v0.20.9
+        uses: anchore/sbom-action@v0.24.0
         with:
           path: .
           format: spdx-json
@@ -60,7 +60,7 @@ jobs:
           ${{ matrix.context }}
 
       - name: Generate image SBOM
-        uses: anchore/sbom-action@v0.20.9
+        uses: anchore/sbom-action@v0.24.0
         with:
           image: ${{ matrix.image }}
           format: spdx-json
