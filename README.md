@@ -1,5 +1,14 @@
 # nextjs-go-monorepo-kit
 
+[![npm version](https://img.shields.io/npm/v/%40boyeep%2Fnextjs-go-monorepo-kit)](https://www.npmjs.com/package/@boyeep/nextjs-go-monorepo-kit) [![npm downloads](https://img.shields.io/npm/dm/%40boyeep%2Fnextjs-go-monorepo-kit)](https://www.npmjs.com/package/@boyeep/nextjs-go-monorepo-kit) [![license](https://img.shields.io/github/license/Boyeep/nextjs-go-monorepo-kit)](https://github.com/Boyeep/nextjs-go-monorepo-kit/blob/main/LICENSE)
+
+Create a project directly from npm:
+
+```bash
+npx @boyeep/nextjs-go-monorepo-kit my-go-app
+```
+
+
 [![Template CI](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/template-ci.yml/badge.svg)](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/template-ci.yml)
 [![E2E](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/e2e.yml/badge.svg)](https://github.com/Boyeep/nextjs-go-monorepo-kit/actions/workflows/e2e.yml)
 
