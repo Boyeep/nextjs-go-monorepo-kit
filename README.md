@@ -1,6 +1,6 @@
 # nextjs-go-monorepo-kit
 
-[![npm version](https://img.shields.io/npm/v/%40boyeep%2Fnextjs-go-monorepo-kit)](https://www.npmjs.com/package/@boyeep/nextjs-go-monorepo-kit) [![npm downloads](https://img.shields.io/npm/dm/%40boyeep%2Fnextjs-go-monorepo-kit)](https://www.npmjs.com/package/@boyeep/nextjs-go-monorepo-kit) [![license](https://img.shields.io/github/license/Boyeep/nextjs-go-monorepo-kit)](https://github.com/Boyeep/nextjs-go-monorepo-kit/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/%40boyeep%2Fnextjs-go-monorepo-kit)](https://www.npmjs.com/package/@boyeep/nextjs-go-monorepo-kit) [![npm downloads](https://img.shields.io/npm/dm/%40boyeep%2Fnextjs-go-monorepo-kit)](https://www.npmjs.com/package/@boyeep/nextjs-go-monorepo-kit) [![license](https://img.shields.io/npm/l/%40boyeep%2Fnextjs-go-monorepo-kit)](https://www.npmjs.com/package/@boyeep/nextjs-go-monorepo-kit)
 
 Create a project directly from npm:
 
