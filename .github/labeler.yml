@@ -1,0 +1,66 @@
+frontend:
+  - changed-files:
+      - any-glob-to-any-file: "frontend/**"
+
+backend:
+  - changed-files:
+      - any-glob-to-any-file: "backend/**"
+
+api:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "docs/openapi.yaml"
+          - "frontend/src/generated/openapi.ts"
+          - "backend/internal/handler/**"
+          - "backend/internal/server/**"
+
+auth:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "frontend/src/features/auth/**"
+          - "backend/internal/service/auth_service.go"
+          - "backend/internal/handler/http/auth_handler.go"
+          - "backend/internal/repository/user_repository.go"
+
+database:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "backend/migrations/**"
+          - "backend/internal/repository/migrations/**"
+          - "backend/internal/repository/db.go"
+          - "compose.yml"
+
+e2e:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "frontend/e2e/**"
+          - "scripts/e2e.mjs"
+          - ".github/workflows/e2e.yml"
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/workflows/**"
+          - "scripts/check*.mjs"
+
+infra:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "compose.yml"
+          - "**/Dockerfile"
+          - "scripts/**"
+          - "**/.env.example"
+
+docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - "docs/**"
+
+ui:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "frontend/src/app/globals.css"
+          - "frontend/src/components/**"
+          - "frontend/src/features/**/components/**"
+          - "frontend/src/layouts/**"

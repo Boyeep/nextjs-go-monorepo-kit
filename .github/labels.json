@@ -1,0 +1,12 @@
+[
+  { "name": "frontend", "color": "0e7490", "description": "Next.js application or client-side changes." },
+  { "name": "backend", "color": "166534", "description": "Go API, service, or repository changes." },
+  { "name": "api", "color": "15803d", "description": "API contract, handler, or routing changes." },
+  { "name": "auth", "color": "7c3aed", "description": "Authentication or access-control changes." },
+  { "name": "database", "color": "a16207", "description": "PostgreSQL schema, migration, or database changes." },
+  { "name": "e2e", "color": "c2410c", "description": "Browser or full-stack verification changes." },
+  { "name": "ci", "color": "4f46e5", "description": "Continuous integration or workflow changes." },
+  { "name": "infra", "color": "4338ca", "description": "Docker, scripts, environment, or infrastructure changes." },
+  { "name": "docs", "color": "ca8a04", "description": "Documentation changes." },
+  { "name": "ui", "color": "db2777", "description": "User interface, layout, or styling changes." }
+]
