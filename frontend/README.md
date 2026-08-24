@@ -92,7 +92,3 @@ Shared motion, hover, background, and UI polish guidance lives in
 
 `next-sitemap` runs after production builds and generates sitemap metadata based on
 the configured site URL.
-
-## License
-
-Choose and add your own license before publishing this template.
