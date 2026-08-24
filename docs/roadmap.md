@@ -8,7 +8,6 @@ The goal is not to turn the template into a kitchen-sink starter. The goal is to
 
 - OpenAPI contract spec plus generated frontend types
 - Playwright smoke testing across the full local stack
-- AI-ready repo guidance for multiple coding tools
 - Refreshed landing page and site chrome
 
 ## Soon

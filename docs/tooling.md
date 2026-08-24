@@ -390,4 +390,3 @@ When the app gets bigger, these are the next strongest additions:
 - [README.md](../README.md)
 - [docs/expansions.md](./expansions.md)
 - [frontend/README.md](../frontend/README.md)
-- [AGENTS.md](../AGENTS.md)

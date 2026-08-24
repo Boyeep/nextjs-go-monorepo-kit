@@ -127,17 +127,6 @@ npm run e2e
 - An SBOM workflow publishes SPDX artifacts for the repository source plus the backend and frontend runner images.
 - Release tags also publish attested GHCR images and attach source/image SBOMs to the GitHub release.
 
-## AI-Ready Guidance
-
-This template now ships with repository instructions for common AI coding tools:
-
-- `AGENTS.md` as the main repo guide
-- `CLAUDE.md` for Claude-style tooling
-- `.github/copilot-instructions.md` for GitHub Copilot
-- `.cursor/rules/repo-template.mdc` for Cursor
-
-These files document the repo structure, verification commands, architecture conventions, and template-specific gotchas so AI agents can make safer changes with less setup.
-
 ## Subproject Docs
 
 - [frontend/README.md](./frontend/README.md)
