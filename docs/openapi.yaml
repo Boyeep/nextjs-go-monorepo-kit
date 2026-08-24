@@ -11,8 +11,6 @@ tags:
   - name: Health
   - name: Auth
   - name: Analytics
-  - name: Resources
-  - name: Entries
 paths:
   /health:
     get:
@@ -192,67 +190,12 @@ paths:
           $ref: "#/components/responses/NotImplemented"
         "502":
           $ref: "#/components/responses/BadGateway"
-  /api/v1/resources:
-    get:
-      tags: [Resources]
-      operationId: listResources
-      summary: List public resources
-      responses:
-        "200":
-          description: Resource list
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResourceListResponse"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-  /api/v1/resources/{slug}:
-    parameters:
-      - $ref: "#/components/parameters/Slug"
-    get:
-      tags: [Resources]
-      operationId: getResource
-      summary: Get a resource by slug
-      responses:
-        "200":
-          description: Resource detail
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResourceResponse"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
-  /api/v1/resources/{slug}/entries:
-    parameters:
-      - $ref: "#/components/parameters/Slug"
-    get:
-      tags: [Entries]
-      operationId: listEntriesByResource
-      summary: List public entries for a resource
-      responses:
-        "200":
-          description: Entry list
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EntryListResponse"
-        "500":
-          $ref: "#/components/responses/InternalServerError"
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-  parameters:
-    Slug:
-      name: slug
-      in: path
-      required: true
-      schema:
-        type: string
   responses:
     BadRequest:
       description: Invalid request
@@ -268,12 +211,6 @@ components:
             $ref: "#/components/schemas/ErrorResponse"
     Forbidden:
       description: Authenticated but not allowed
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-    NotFound:
-      description: Resource not found
       content:
         application/json:
           schema:
@@ -324,83 +261,6 @@ components:
         database:
           type: string
         timestamp:
-          type: string
-          format: date-time
-    Resource:
-      type: object
-      additionalProperties: false
-      required:
-        - id
-        - owner_id
-        - slug
-        - title
-        - description
-        - visibility
-        - status
-        - locale
-        - entry_count
-        - estimated_minutes
-        - created_at
-        - updated_at
-      properties:
-        id:
-          type: string
-        owner_id:
-          type: string
-        slug:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        visibility:
-          type: string
-          enum: [private, unlisted, public]
-        status:
-          type: string
-          enum: [draft, published, archived]
-        locale:
-          type: string
-        entry_count:
-          type: integer
-        estimated_minutes:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    Entry:
-      type: object
-      additionalProperties: false
-      required:
-        - id
-        - resource_id
-        - position
-        - title
-        - content
-        - created_at
-        - updated_at
-      properties:
-        id:
-          type: string
-        resource_id:
-          type: string
-        position:
-          type: integer
-        title:
-          type: string
-        content:
-          type: string
-        details:
-          type: string
-        notes:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
           type: string
           format: date-time
     User:
@@ -526,31 +386,6 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/User"
-    ResourceResponse:
-      type: object
-      additionalProperties: false
-      required: [data]
-      properties:
-        data:
-          $ref: "#/components/schemas/Resource"
-    ResourceListResponse:
-      type: object
-      additionalProperties: false
-      required: [data]
-      properties:
-        data:
-          type: array
-          items:
-            $ref: "#/components/schemas/Resource"
-    EntryListResponse:
-      type: object
-      additionalProperties: false
-      required: [data]
-      properties:
-        data:
-          type: array
-          items:
-            $ref: "#/components/schemas/Entry"
     AnalyticsOverviewResponse:
       type: object
       additionalProperties: false

@@ -91,7 +91,6 @@ Current implementation:
 
 - `frontend/src/app/globals.css`
 - `frontend/src/features/home/components/centered-home-page.tsx`
-- `frontend/src/features/sandbox/components/sandbox-page.tsx`
 
 ## Themed Chrome
 

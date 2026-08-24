@@ -22,15 +22,12 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/dashboard", label: "Dashboard" },
-  { href: "/sandbox", label: "Sandbox" },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname();
   const activeHref =
-    pathname === "/" || pathname === "/dashboard" || pathname === "/sandbox"
-      ? pathname
-      : "";
+    pathname === "/" || pathname === "/dashboard" ? pathname : "";
   const queryClient = useQueryClient();
   const mobileNavOpen = useUiStore((state) => state.mobileNavOpen);
   const setMobileNavOpen = useUiStore((state) => state.setMobileNavOpen);
@@ -49,7 +46,7 @@ export function SiteHeader() {
           <BrandMark className="h-11 w-11 shrink-0" />
           <span className="grid min-w-0 gap-0.5">
             <span className="text-[0.68rem] font-bold tracking-[0.22em] text-[var(--brand-deep)] uppercase">
-              Starter Sandbox
+              Full-stack Starter
             </span>
             <span className="truncate font-[family-name:var(--font-display)] text-[1.1rem] font-bold tracking-[-0.04em] text-[var(--text)]">
               {appConfig.name}

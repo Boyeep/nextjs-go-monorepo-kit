@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { DM_Sans, Space_Grotesk } from "next/font/google";
 import "@/app/globals.css";
 import { PlausibleAnalytics } from "@/components/plausible-analytics";
-import { VercelAnalytics } from "@/components/vercel-analytics";
 import { RootShell } from "@/layouts/root-shell";
 import { appConfig } from "@/lib/app-config";
 
@@ -72,7 +71,6 @@ export default function RootLayout({
         </noscript>
         <RootShell>{children}</RootShell>
         <PlausibleAnalytics />
-        <VercelAnalytics />
       </body>
     </html>
   );

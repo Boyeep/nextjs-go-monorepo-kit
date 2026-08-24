@@ -10,33 +10,6 @@ type HealthStatus struct {
 	Timestamp time.Time `json:"timestamp"`
 }
 
-type Resource struct {
-	ID               string    `json:"id"`
-	OwnerID          string    `json:"owner_id"`
-	Slug             string    `json:"slug"`
-	Title            string    `json:"title"`
-	Description      string    `json:"description"`
-	Visibility       string    `json:"visibility"`
-	Status           string    `json:"status"`
-	Locale           string    `json:"locale"`
-	EntryCount       int       `json:"entry_count"`
-	EstimatedMinutes int       `json:"estimated_minutes"`
-	CreatedAt        time.Time `json:"created_at"`
-	UpdatedAt        time.Time `json:"updated_at"`
-}
-
-type Entry struct {
-	ID         string    `json:"id"`
-	ResourceID string    `json:"resource_id"`
-	Position   int       `json:"position"`
-	Title      string    `json:"title"`
-	Content    string    `json:"content"`
-	Details    string    `json:"details,omitempty"`
-	Notes      string    `json:"notes,omitempty"`
-	CreatedAt  time.Time `json:"created_at"`
-	UpdatedAt  time.Time `json:"updated_at"`
-}
-
 type User struct {
 	ID           string     `json:"id"`
 	Username     string     `json:"username"`

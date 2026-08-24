@@ -24,7 +24,7 @@ export function SiteFooter() {
                 {appConfig.name}
               </strong>
               <span className="text-[0.72rem] font-bold tracking-[0.22em] text-[var(--brand-deep)] uppercase">
-                Full-stack starter sandbox
+                Full-stack starter
               </span>
             </div>
           </div>

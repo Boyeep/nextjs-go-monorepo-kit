@@ -16,32 +16,6 @@ test.describe("starter smoke flows", () => {
     await expect(
       page.getByRole("link", { name: "Open dashboard preview" }),
     ).toBeVisible();
-    await expect(
-      page.getByRole("link", { name: "Open starter sandbox" }),
-    ).toBeVisible();
-
-    await page.goto("/sandbox");
-
-    await expect(
-      page.getByRole("heading", {
-        name: "Component Gallery",
-      }),
-    ).toBeVisible();
-    await expect(
-      page.getByRole("heading", {
-        name: "Buttons",
-      }),
-    ).toBeVisible();
-
-    await page.goto("/templates/demo-resource");
-
-    await expect(
-      page.getByRole("heading", {
-        name: "Demo Template",
-      }),
-    ).toBeVisible();
-    await expect(page.getByText("Section 1")).toBeVisible();
-
     await page.goto("/dashboard");
 
     await expect(
