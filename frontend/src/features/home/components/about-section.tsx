@@ -1,5 +1,5 @@
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { featuredTemplates } from "@/lib/site-data";
+import { featuredHighlights } from "@/lib/site-data";
 
 const landingHighlights = [
   {
@@ -20,7 +20,7 @@ const landingHighlights = [
 ];
 
 export function AboutSection() {
-  const featuredCards = featuredTemplates.slice(0, 3);
+  const featuredCards = featuredHighlights.slice(0, 3);
 
   return (
     <section className="relative px-0 pt-2 pb-4" id="about">
@@ -74,9 +74,9 @@ export function AboutSection() {
         </ScrollReveal>
 
         <div className="grid gap-4">
-          {featuredCards.map((template, index) => (
+          {featuredCards.map((highlight, index) => (
             <ScrollReveal
-              key={template.title}
+              key={highlight.title}
               as="article"
               className="rounded-[28px] border border-white/80 bg-white/78 p-5 shadow-[0_20px_44px_rgba(31,41,55,0.08)] backdrop-blur-[14px]"
               delayMs={90 + index * 90}
@@ -84,13 +84,13 @@ export function AboutSection() {
               <div className="flex items-start justify-between gap-4">
                 <div className="grid gap-2">
                   <span className="text-xs font-bold tracking-[0.18em] text-[var(--accent-brand)] uppercase">
-                    {template.category}
+                    {highlight.category}
                   </span>
                   <h3 className="m-0 font-[family-name:var(--font-display)] text-[1.45rem] tracking-[-0.04em]">
-                    {template.title}
+                    {highlight.title}
                   </h3>
                   <p className="m-0 text-sm leading-7 text-[var(--muted-text)]">
-                    {template.description}
+                    {highlight.description}
                   </p>
                 </div>
                 <span className="rounded-full bg-[rgba(31,111,120,0.08)] px-3 py-2 text-sm font-semibold text-[var(--accent-brand)]">

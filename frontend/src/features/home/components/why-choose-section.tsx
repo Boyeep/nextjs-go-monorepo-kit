@@ -5,7 +5,7 @@ const quickFacts = [
   "Next.js + Go foundation",
   "Auth and dashboard included",
   "Flexible sections ready to adapt",
-  "Sandbox-friendly by default",
+  "Simple to customize",
 ];
 
 const starterHighlights = [

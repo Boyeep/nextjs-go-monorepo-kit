@@ -22,20 +22,14 @@ func NewRouter(cfg config.Config, db *pgxpool.Pool) http.Handler {
 	mux := http.NewServeMux()
 
 	userRepository := repository.NewUserRepository(db)
-	resourceRepository := repository.NewResourceRepository(db)
-	entryRepository := repository.NewEntryRepository(db)
 
 	healthService := service.NewHealthService(cfg, db)
 	authService := service.NewAuthService(cfg, userRepository)
 	analyticsService := service.NewAnalyticsService(cfg)
-	resourceService := service.NewResourceService(resourceRepository)
-	entryService := service.NewEntryService(entryRepository)
 
 	healthHandler := httpHandler.NewHealthHandler(healthService)
 	authHandler := httpHandler.NewAuthHandler(authService)
 	analyticsHandler := httpHandler.NewAnalyticsHandler(analyticsService)
-	resourceHandler := httpHandler.NewResourceHandler(resourceService)
-	entryHandler := httpHandler.NewEntryHandler(entryService)
 
 	mux.HandleFunc("GET /health", healthHandler.Get)
 	mux.HandleFunc("POST /api/v1/auth/register", authHandler.Register)
@@ -49,9 +43,6 @@ func NewRouter(cfg config.Config, db *pgxpool.Pool) http.Handler {
 		"GET /api/v1/analytics/overview",
 		authMiddleware(authService, ownerOnlyMiddleware(cfg, userRepository, http.HandlerFunc(analyticsHandler.Overview))),
 	)
-	mux.HandleFunc("GET /api/v1/resources", resourceHandler.List)
-	mux.HandleFunc("GET /api/v1/resources/{slug}", resourceHandler.Get)
-	mux.HandleFunc("GET /api/v1/resources/{slug}/entries", entryHandler.ListByResource)
 
 	return withCORS(cfg, withSecurityHeaders(withRequestID(withLogging(mux))))
 }

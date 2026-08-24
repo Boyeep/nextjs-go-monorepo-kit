@@ -13,7 +13,7 @@ export function HeroSection() {
             className="relative inline-flex items-center rounded-full border border-[rgba(31,111,120,0.14)] bg-white/76 px-4 py-2 text-[0.78rem] font-bold tracking-[0.18em] text-[var(--accent-brand)] uppercase shadow-sm backdrop-blur-[12px]"
             distancePx={18}
           >
-            starter sandbox
+            full-stack starter
           </ScrollReveal>
 
           <ScrollReveal
@@ -42,13 +42,6 @@ export function HeroSection() {
           >
             <Button asChild className="min-w-[220px]">
               <Link href="/dashboard">Open dashboard preview</Link>
-            </Button>
-            <Button
-              asChild
-              variant="secondary"
-              className="min-w-[220px] border-[rgba(31,41,55,0.1)] bg-white/84"
-            >
-              <Link href="/sandbox">Open starter sandbox</Link>
             </Button>
           </ScrollReveal>
         </div>

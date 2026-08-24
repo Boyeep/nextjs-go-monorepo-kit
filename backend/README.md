@@ -1,8 +1,7 @@
 # Backend Template
 
 This is a Go backend starter for a general full-stack app. It ships with auth,
-resource and entry read endpoints, analytics endpoints, PostgreSQL support, and
-SQL migrations.
+analytics endpoints, PostgreSQL support, and SQL migrations.
 
 ## Stack
 
@@ -33,9 +32,6 @@ GET  /health
 POST /api/v1/auth/register
 POST /api/v1/auth/login
 GET  /api/v1/auth/me
-GET  /api/v1/resources
-GET  /api/v1/resources/:slug
-GET  /api/v1/resources/:slug/entries
 ```
 
 `/api/v1/auth/me` expects:
@@ -65,7 +61,7 @@ Notes:
 - `PORT` is supported automatically for Railway/Render/Fly-style platforms.
 - `CORS_ALLOWED_ORIGINS` should include your frontend app URL.
 - the server now starts with graceful shutdown, request IDs, and basic security headers by default.
-- demo seeding can provision a ready-to-use starter account and sample content for local development.
+- demo seeding can provision a ready-to-use account for local development.
 
 ## Database
 
@@ -73,7 +69,6 @@ Core schema is defined in:
 
 - `migrations/000001_init_schema.up.sql`
 - `migrations/000001_init_schema.down.sql`
-- `docs/database-schema.md`
 
 Apply the migration before starting the API in production.
 
@@ -98,8 +93,6 @@ Suggested flow:
 
 - auth
 - users
-- resources
-- entries
 - project-specific modules
 
 ## Frontend Integration
@@ -120,8 +113,6 @@ Good first integrations:
 - login
 - register
 - fetch current user
-- fetch public resources
-- fetch public entries for a resource
 
 ## Password Reset Email
 

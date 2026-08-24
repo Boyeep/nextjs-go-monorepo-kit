@@ -25,9 +25,7 @@ describe("api helpers", () => {
     delete process.env.NEXT_PUBLIC_API_BASE_URL;
 
     expect(getApiBaseUrl()).toBe("http://localhost:8080/api/v1");
-    expect(buildApiUrl("resources")).toBe(
-      "http://localhost:8080/api/v1/resources",
-    );
+    expect(buildApiUrl("auth/me")).toBe("http://localhost:8080/api/v1/auth/me");
   });
 
   it("returns parsed json for successful requests", async () => {

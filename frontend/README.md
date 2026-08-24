@@ -23,7 +23,6 @@ src/
   features/
     auth/
     dashboard/   # private owner workspace
-    resources/   # resource/detail module
     home/
     shared/
   layouts/
@@ -58,7 +57,6 @@ NEXT_PUBLIC_APP_NAME=Next.js Go Monorepo Kit
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_API_BASE_URL=http://localhost:8080/api/v1
 NEXT_PUBLIC_DASHBOARD_OWNER_EMAIL=demo@nextjs-go-kit.local
-NEXT_PUBLIC_ENABLE_SAMPLE_FALLBACK=false
 ```
 
 The template now includes:
@@ -67,7 +65,6 @@ The template now includes:
 - Tailwind CSS 4 with CSS-first theme tokens in `src/app/globals.css`
 - a timeout-aware API client with typed API errors
 - polished global `loading`, `error`, and `not-found` app states
-- optional sample data fallbacks, enabled only when `NEXT_PUBLIC_ENABLE_SAMPLE_FALLBACK=true`
 - demo credentials surfaced on the login screen for local development
 - in-memory auth session storage so access tokens are not persisted across browser refreshes
 - Vitest coverage for frontend utility and component behavior
@@ -75,9 +72,6 @@ The template now includes:
 
 ## Quality Tooling
 
-- Husky for local git hooks
-- lint-staged for pre-commit checks
-- Commitlint for conventional commits
 - strict ESLint, Prettier, and TypeScript checks
 - Vitest with React Testing Library for frontend verification
 - Playwright for browser-level smoke tests
@@ -87,12 +81,3 @@ The template now includes:
 
 Shared motion, hover, background, and UI polish guidance lives in
 [`../docs/ui-ux-guidelines.md`](../docs/ui-ux-guidelines.md).
-
-## Sitemap
-
-`next-sitemap` runs after production builds and generates sitemap metadata based on
-the configured site URL.
-
-## License
-
-Choose and add your own license before publishing this template.

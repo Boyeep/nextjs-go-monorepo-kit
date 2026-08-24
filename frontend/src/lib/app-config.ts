@@ -25,8 +25,6 @@ export const appConfig = {
   url: normalizeUrl(process.env.NEXT_PUBLIC_APP_URL?.trim() || DEFAULT_APP_URL),
   description:
     "General-purpose full-stack app template with auth, protected flows, and production-ready defaults.",
-  enableSampleFallback:
-    process.env.NEXT_PUBLIC_ENABLE_SAMPLE_FALLBACK === "true",
   demo: {
     email: process.env.NEXT_PUBLIC_DEMO_EMAIL?.trim() || "",
     password: process.env.NEXT_PUBLIC_DEMO_PASSWORD?.trim() || "",

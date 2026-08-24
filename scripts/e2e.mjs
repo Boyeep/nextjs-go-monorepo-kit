@@ -308,14 +308,6 @@ async function main() {
       ...smokeFrontendEnv,
     },
   });
-  runSync("npm", ["exec", "--", "next-sitemap"], {
-    cwd: frontendDir,
-    env: {
-      ...process.env,
-      ...smokeFrontendEnv,
-    },
-  });
-
   console.log("Starting frontend app...");
   runBackground(
     "npm",

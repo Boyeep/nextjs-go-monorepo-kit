@@ -157,61 +157,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/resources": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List public resources */
-        get: operations["listResources"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/resources/{slug}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                slug: components["parameters"]["Slug"];
-            };
-            cookie?: never;
-        };
-        /** Get a resource by slug */
-        get: operations["getResource"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/resources/{slug}/entries": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                slug: components["parameters"]["Slug"];
-            };
-            cookie?: never;
-        };
-        /** List public entries for a resource */
-        get: operations["listEntriesByResource"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -226,37 +171,6 @@ export interface components {
             database: string;
             /** Format: date-time */
             timestamp: string;
-        };
-        Resource: {
-            id: string;
-            owner_id: string;
-            slug: string;
-            title: string;
-            description: string;
-            /** @enum {string} */
-            visibility: "private" | "unlisted" | "public";
-            /** @enum {string} */
-            status: "draft" | "published" | "archived";
-            locale: string;
-            entry_count: number;
-            estimated_minutes: number;
-            /** Format: date-time */
-            created_at: string;
-            /** Format: date-time */
-            updated_at: string;
-        };
-        Entry: {
-            id: string;
-            resource_id: string;
-            position: number;
-            title: string;
-            content: string;
-            details?: string;
-            notes?: string;
-            /** Format: date-time */
-            created_at: string;
-            /** Format: date-time */
-            updated_at: string;
         };
         User: {
             id: string;
@@ -312,15 +226,6 @@ export interface components {
         UserResponse: {
             data: components["schemas"]["User"];
         };
-        ResourceResponse: {
-            data: components["schemas"]["Resource"];
-        };
-        ResourceListResponse: {
-            data: components["schemas"]["Resource"][];
-        };
-        EntryListResponse: {
-            data: components["schemas"]["Entry"][];
-        };
         AnalyticsOverviewResponse: {
             data: components["schemas"]["AnalyticsOverview"];
         };
@@ -365,15 +270,6 @@ export interface components {
                 "application/json": components["schemas"]["ErrorResponse"];
             };
         };
-        /** @description Resource not found */
-        NotFound: {
-            headers: {
-                [name: string]: unknown;
-            };
-            content: {
-                "application/json": components["schemas"]["ErrorResponse"];
-            };
-        };
         /** @description Conflict with existing data */
         Conflict: {
             headers: {
@@ -411,9 +307,7 @@ export interface components {
             };
         };
     };
-    parameters: {
-        Slug: string;
-    };
+    parameters: never;
     requestBodies: never;
     headers: never;
     pathItems: never;
@@ -637,74 +531,6 @@ export interface operations {
             403: components["responses"]["Forbidden"];
             501: components["responses"]["NotImplemented"];
             502: components["responses"]["BadGateway"];
-        };
-    };
-    listResources: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Resource list */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ResourceListResponse"];
-                };
-            };
-            500: components["responses"]["InternalServerError"];
-        };
-    };
-    getResource: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                slug: components["parameters"]["Slug"];
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Resource detail */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ResourceResponse"];
-                };
-            };
-            404: components["responses"]["NotFound"];
-            500: components["responses"]["InternalServerError"];
-        };
-    };
-    listEntriesByResource: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                slug: components["parameters"]["Slug"];
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Entry list */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["EntryListResponse"];
-                };
-            };
-            500: components["responses"]["InternalServerError"];
         };
     };
 }

@@ -28,8 +28,6 @@ These are already part of the current starter or its immediate UI architecture.
 | tailwind-merge + clsx | Installed | safe class composition | helps keep component styles maintainable |
 | Vitest + Testing Library | Installed | unit/component testing | use for frontend behavior tests |
 | Playwright | Installed | end-to-end browser coverage | root `npm run e2e` boots the full stack |
-| next-sitemap | Installed | sitemap and robots generation | runs after frontend builds |
-| Vercel Analytics | Installed | lightweight web analytics | optional, already wired as a hook |
 
 ## Best Optional Additions
 
@@ -388,6 +386,4 @@ When the app gets bigger, these are the next strongest additions:
 ## Related Docs
 
 - [README.md](../README.md)
-- [docs/expansions.md](./expansions.md)
 - [frontend/README.md](../frontend/README.md)
-- [AGENTS.md](../AGENTS.md)
