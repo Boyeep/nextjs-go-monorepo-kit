@@ -30,7 +30,7 @@ jobs:
             image: nextjs-go-monorepo-kit-backend
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Resolve image namespace
         id: namespace
