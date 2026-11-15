@@ -33,7 +33,7 @@ Built to keep the developer-experience strengths of polished frontend starters w
 - `frontend/`: Next.js app with auth, dashboard, and shared UI primitives
 - `backend/`: Go API with migrations, auth, and analytics endpoints
 - `scripts/`: root development and verification scripts
-- `.github/`: repository-level CI workflow
+- `.github/`: repository-level CI workflow.
 
 ## Why Monorepo
 
